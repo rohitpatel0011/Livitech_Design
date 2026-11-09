@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --espresso-950: #1A120E;
+  --espresso-800: #3A2418;
+  --bronze-600: #6B4A2E;
+  --sandstone-400: #A88462;
+  --travertine-200: #D5C4AE;
+  --slate-600: #4A4A46;
+
+  --brand: #83461b;
+  --brand-dark: #3A2418;
+  --brand-accent: #A88462;
+  --brand-light: #D5C4AE;
+
+  --ink: #1A120E;
+  --ink-muted: #4A4A46;
+  --ink-subtle: #78756F;
+
+  --surface: #FFFFFF;
+  --surface-muted: #FAF7F2;
+  --surface-subtle: #F3EDE4;
+
+  --border: #D5C4AE;
+  --border-strong: #A88462;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-light: var(--brand-light);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-subtle: var(--surface-subtle);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --shadow-booking: 0 2px 10px 0 rgba(26, 18, 14, 0.06);
+  --shadow-booking-hover: 0 12px 28px 0 rgba(58, 36, 24, 0.14);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Text Selection Color */
+::selection {
+  background-color: #D5C4AE;
+  color: #1A120E;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--surface);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera on horizontal pill carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
