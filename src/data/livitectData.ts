@@ -238,8 +238,8 @@ export const HERO_VISUAL_SLIDES: HeroVisualSlide[] = [
     location: "Structural Engineering",
     metrics: "Earthquake-Resistant Design · Foundation Drawings · Civil Audits",
     description: "Licensed structural engineers ensure scientific steel reinforcement, certified concrete strength, and routine site checks.",
-    mainImage: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1200&q=85",
-    blueprintThumb: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=400&q=80",
+    mainImage: "/images/rcc-structural-supervision.jpg",
+    blueprintThumb: "/images/rcc-structural-supervision.jpg",
   },
   {
     id: "stage-3",
