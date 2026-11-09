@@ -162,14 +162,14 @@ export default function CostEstimatorSection() {
   };
 
   return (
-    <section 
-      id="cost-estimator" 
+    <section
+      id="cost-estimator"
       className="py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6D3C3]/50 text-[#8E4F2A] text-xs font-extrabold uppercase tracking-wider">
@@ -185,16 +185,16 @@ export default function CostEstimatorSection() {
         </div>
 
         {/* DYNAMIC SLIDER CONTAINER (Active Large Card + Inactive Preview Cards) */}
-        <div 
+        <div
           ref={sliderRef}
           className="relative overflow-hidden"
           onClick={() => setIsPaused(true)}
         >
           <div className="flex gap-6 items-stretch transition-transform duration-500 ease-out">
-            
+
             {/* ACTIVE LARGE CARD (Expanded with Step 2 Calculator & Breakdown) */}
             <div className="w-full bg-white rounded-3xl border-2 border-[#8E4F2A] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-              
+
               {/* LEFT SIDE OF ACTIVE CARD: Image Header & Package Info */}
               <div className="lg:col-span-5 relative bg-[#1A120E] text-white p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -276,10 +276,10 @@ export default function CostEstimatorSection() {
 
               {/* RIGHT SIDE OF ACTIVE CARD: Customization, Calculation & WhatsApp BOQ Gate */}
               <div className="lg:col-span-7 p-6 sm:p-8 space-y-6 bg-white">
-                
+
                 {/* Parameter Controls (Area Slider & City Dropdown) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#F9F6F0] p-4 rounded-2xl border border-[#E6D3C3]/50">
-                  
+
                   {/* Area Slider */}
                   <div className="space-y-2">
                     <label className="text-[11px] font-bold uppercase text-[#4A4A46] flex items-center justify-between">
@@ -448,3 +448,4 @@ export default function CostEstimatorSection() {
     </section>
   );
 }
+

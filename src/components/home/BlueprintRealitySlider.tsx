@@ -70,9 +70,7 @@ export default function BlueprintRealitySlider() {
               From 2D Blueprint to On-Site Reality
             </h2>
             <p className="text-sm sm:text-base text-ink-muted mt-1.5 max-w-2xl">
-              Slider ko left-right drag karke dekhein ki Livitech Design (livitechdesign.in) ka banaya hua
-              CAD naksha aur 3D design asaliyat mein site par kaise बनकर taiyar
-              hota hai.
+              Drag the interactive slider to compare our precision 2D CAD blueprints and 3D architectural renders directly against real site execution.
             </p>
           </div>
 
