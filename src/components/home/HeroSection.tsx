@@ -10,7 +10,6 @@ import {
   ChevronRight,
   MapPin,
   CheckCircle2,
-  Sparkles,
   Layers,
   Ruler,
 } from "lucide-react";
@@ -81,11 +80,6 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* LEFT COLUMN (5 Cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-dark/80 border border-brand-accent/40 text-brand-light text-xs font-bold tracking-wide uppercase backdrop-blur-md shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
-              <span>Plan · Design · Estimate · Supervise</span>
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
               Build better.{" "}
               <span className="text-brand-accent block mt-1">
