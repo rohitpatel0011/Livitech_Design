@@ -82,20 +82,25 @@ export interface BlueprintComparisonItem {
 export interface ConstructionPackage {
   id: string;
   name: string;
+  priceRange: string;
   tagline: string;
   ratePerSqFt: number;
   popular?: boolean;
+  highlights: string[];
   structure: {
     steel: string;
     cement: string;
     aggregate: string;
     sand: string;
+    masonry: string;
   };
   finishing: {
     flooring: string;
     paint: string;
     doors: string;
     windows: string;
+    kitchenBath: string;
+    specialFeatures?: string[];
   };
   mep: {
     wiring: string;
@@ -1018,77 +1023,158 @@ export const BLUEPRINT_COMPARISONS: BlueprintComparisonItem[] = [
 
 export const CONSTRUCTION_PACKAGES: ConstructionPackage[] = [
   {
-    id: "classic",
-    name: "Classic Package",
-    tagline: "Sturdy RCC structure with essential branded finishes",
-    ratePerSqFt: 1590,
+    id: "basic-structure",
+    name: "Basic Structure",
+    priceRange: "₹1,250 – ₹1,400 /sqft",
+    tagline:
+      "A budget package with no compromise on quality that includes all construction essentials",
+    ratePerSqFt: 1325,
+    highlights: [
+      "Trusted brand steel & cement",
+      "Standard flush doors and window finish",
+      "Tractor Emulsion finish",
+      "Essential kitchen & bathroom fittings",
+      "Class-1 brickwork & structural RCC",
+    ],
     structure: {
       steel: "Kamdhenu / Shyam Steel Fe-500D TMT",
       cement: "Bangur / Birla Gold / Prism 43 Grade",
-      aggregate: "20mm & 10mm Stone Aggregate",
+      aggregate: "20mm & 10mm Machine-Crushed Stone Aggregate",
       sand: "Koel / Sone River Coarse Red Sand",
+      masonry: "Standard Class-1 Red Clay Bricks",
     },
     finishing: {
-      flooring: "Vitrified Tiles (₹45/sq.ft) in living & bedrooms",
-      paint: "Asian Paints Tractor Emulsion (Internal)",
-      doors: "Flush Doors with Sal Wood frames",
-      windows: "Powder-coated aluminium sliding windows",
+      flooring: "Vitrified Flooring Tiles (2x2 ft) in living, bedroom & kitchen",
+      paint: "Asian Paints Tractor Emulsion finish",
+      doors: "Standard flush doors and window finish",
+      windows: "Powder-coated 2-track aluminium sliding windows",
+      kitchenBath: "Essential kitchen & bathroom fittings with stainless steel sink",
     },
     mep: {
       wiring: "Anchor / Polycab FRLS flame retardant wire",
       plumbing: "Supreme / Astral PVC & CPVC pipes",
       switches: "Anchor Roma modular switches",
     },
-    timelineMonths: 7,
+    timelineMonths: 6,
   },
   {
-    id: "premium",
-    name: "Premium Package",
-    tagline: "Most chosen by Patna homeowners: Grade-A materials + UPVC",
+    id: "basic-finishing",
+    name: "Basic Finishing",
+    priceRange: "₹1,900 – ₹2,200 /sqft",
+    tagline:
+      "The Best-Seller Package. Upgrade your home with trusted brands like Jindal Steel and Hindware at an affordable price.",
     popular: true,
-    ratePerSqFt: 1890,
+    ratePerSqFt: 2050,
+    highlights: [
+      "Superior brand cement & steel",
+      "Elegant teak doors and window finish",
+      "Stylish kitchen & bathroom",
+      "High-Grade Bricks",
+    ],
     structure: {
-      steel: "Tata Tiscon / Jindal Panther Fe-550D TMT",
-      cement: "UltraTech Super / Ambuja Kawach Waterproof",
+      steel: "Jindal Panther / Tata Tiscon Fe-550D TMT",
+      cement: "Superior brand cement & steel (UltraTech / Ambuja)",
       aggregate: "Pakur Black Stone High-Density Aggregate",
       sand: "Screened Sone River Coarse Sand",
+      masonry: "High-Grade Bricks (Class-1 Kiln Burned)",
     },
     finishing: {
-      flooring: "Double Charge Vitrified Tiles 4x2 ft (₹75/sq.ft)",
-      paint: "Asian Paints Apcolite Premium + Exterior Apex",
-      doors: "Teak finish laminated flush doors with mortise locks",
-      windows: "UPVC soundproof windows with 5mm toughened glass",
+      flooring: "Double Charge Vitrified Tiles 4x2 ft (₹75/sq.ft value)",
+      paint: "Asian Paints Apcolite Premium + Exterior Apex Shield",
+      doors: "Elegant teak doors and window finish",
+      windows: "UPVC soundproof 2.5-track windows with toughened glass",
+      kitchenBath: "Stylish kitchen & bathroom with Hindware sanitary & Jaquar fittings",
     },
     mep: {
-      wiring: "Havells / Polycab high-spec wire with MCB box",
-      plumbing: "Astral / Ashirvad CPVC with Jaquar CP fittings",
+      wiring: "Havells / Polycab flame-safe copper cables with MCB box",
+      plumbing: "Astral / Ashirvad CPVC hot & cold concealed lines",
       switches: "Legrand / Schneider electric modular range",
     },
     timelineMonths: 8,
   },
   {
-    id: "royal",
-    name: "Royal Luxury Package",
-    tagline: "Imported Italian marble, home automation & designer facade",
-    ratePerSqFt: 2390,
+    id: "advance-finishing",
+    name: "Advance Finishing",
+    priceRange: "₹2,500 – ₹3,000+ /sqft",
+    tagline:
+      "Designed for Modern Living: An elegant package with luxury additions, including solar heating setups and dedicated puja room doors.",
+    ratePerSqFt: 2750,
+    highlights: [
+      "Superior Brand steel & cement",
+      "Designer teak doors and window finish",
+      "Best quality bathroom & kitchen",
+      "Textured Designer Paint",
+      "AAC Blocks / High-Grade Bricks",
+      "Solar heating setups & dedicated puja room doors",
+    ],
     structure: {
-      steel: "Tata Tiscon Super Ductile SD 550D with test report",
-      cement: "UltraTech Weather Pro / ACC Concrete Plus",
-      aggregate: "Pakur A-Grade Machine-Crushed Aggregate",
+      steel: "Superior Brand steel (Tata Tiscon SD 550D) with test reports",
+      cement: "Superior Brand cement (UltraTech Weather Pro / ACC Concrete Plus)",
+      aggregate: "Pakur A-Grade Machine-Crushed Cubical Aggregate",
       sand: "Double-Washed Sone River Sand",
+      masonry: "AAC Blocks / High-Grade Bricks",
     },
     finishing: {
-      flooring: "Imported Italian Marble / Large 6x4 ft GVT Slabs",
-      paint: "Asian Paints Royale Luxury Interior + PU Polish woodwork",
-      doors: "Solid Teak Wood Main Door + Designer Concealed Hinges",
-      windows: "Heavy-duty Fenesta / Schuco acoustic UPVC system",
+      flooring: "Large format 4x2 ft Glazed Vitrified Tiles (GVT) & wooden plank tiles",
+      paint: "Textured Designer Paint on focal walls + Asian Paints Royale",
+      doors: "Designer teak doors and window finish with dedicated handcrafted puja room doors",
+      windows: "Heavy-duty Fenesta soundproof acoustic UPVC system",
+      kitchenBath: "Best quality bathroom & kitchen (Kohler / Grohe / Franke)",
+      specialFeatures: [
+        "Solar heating setups ready provision",
+        "Dedicated puja room doors with brass hardware",
+        "Textured designer wall finish",
+      ],
     },
     mep: {
-      wiring: "Finolex / Havells smart home ready conduit wiring",
-      plumbing: "Grohe / Kohler concealed flush valves & diverters",
-      switches: "Smart Touch Automation switches with phone control",
+      wiring: "Finolex / Havells smart home ready conduit wiring with isolators",
+      plumbing: "Grohe / Kohler concealed wall-hung flush valves & diverters",
+      switches: "Touch-ready smart modular switches",
     },
     timelineMonths: 10,
+  },
+  {
+    id: "premium-finishing",
+    name: "Premium Finishing",
+    priceRange: "₹3,200 – ₹4,000+ /sqft",
+    tagline:
+      "Premium finishes meeting modern lifestyle features, from EV charging ports to secure copper gas connections.",
+    ratePerSqFt: 3600,
+    highlights: [
+      "Superior Brand steel & cement",
+      "Designer teak doors and window finish",
+      "Apex Ultima Exterior finish",
+      "Lavish Fittings for kitchen & bathroom",
+      "AAC Blocks / High-Grade Bricks",
+      "Bespoke Designer Kitchen & Wardrobes",
+      "EV charging ports & secure copper gas connections",
+    ],
+    structure: {
+      steel: "Superior Brand steel & cement (Tata Tiscon 550D SD Super Ductile)",
+      cement: "UltraTech Weather Pro 53 Grade / Ambuja Composite",
+      aggregate: "Pakur Mechanized Cubical Aggregate",
+      sand: "Triple-Screened Machine-Washed Sand",
+      masonry: "AAC Blocks / High-Grade Bricks",
+    },
+    finishing: {
+      flooring: "Imported Italian Marble / 6x4 ft Ultra-Luxury GVT Slabs",
+      paint: "Apex Ultima Exterior finish + Asian Paints Royale Luxury Interior",
+      doors: "Designer teak doors and window finish with digital biometric lock",
+      windows: "Schuco / Fenesta Thermal Break Aluminium or Luxury UPVC",
+      kitchenBath: "Lavish Fittings for kitchen & bathroom + Bespoke Designer Kitchen & Wardrobes",
+      specialFeatures: [
+        "EV charging ports in covered parking bay",
+        "Secure copper gas connections with safety cutoff",
+        "Bespoke Designer Kitchen & Wardrobes",
+        "Home automation & smart lighting ready",
+      ],
+    },
+    mep: {
+      wiring: "RR Kabel / Havells halogen-free copper with surge protector",
+      plumbing: "Kohler / Toto concealed thermostatically controlled diverters",
+      switches: "Smart Wi-Fi enabled automation touch switches",
+    },
+    timelineMonths: 12,
   },
 ];
 
