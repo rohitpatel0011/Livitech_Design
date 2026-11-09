@@ -69,3 +69,24 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* 3D Flip Animation for Hero Stage Cards */
+@keyframes heroFlipIn {
+  0% {
+    opacity: 0.2;
+    transform: perspective(1200px) rotateY(-80deg) scale(0.92);
+  }
+  60% {
+    transform: perspective(1200px) rotateY(10deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+}
+
+.animate-hero-flip {
+  animation: heroFlipIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
