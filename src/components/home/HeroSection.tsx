@@ -127,11 +127,11 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (7 Cols): Unified Architecture Showcase Card (Clean Image, No Cluttering Badges) */}
+          {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel (Clean & Simple Animation) */}
           <div className="lg:col-span-7">
-            <div className="relative rounded-2xl overflow-hidden border border-white/25 bg-ink shadow-2xl group">
-              {/* 1. Main Stage Image: 100% Clean & Full View (No floating badges / picture-in-picture clutter) */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
+            <div className="relative rounded-2xl overflow-hidden border border-white/25 bg-ink/75 shadow-2xl group backdrop-blur-md">
+              {/* Main Stage Image with Simple Smooth Animation */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   key={activeSlide}
                   src={currentSlide.mainImage}
@@ -141,81 +141,82 @@ export default function HeroSection() {
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover transition-all duration-700 scale-100 group-hover:scale-105"
                 />
+                {/* Softened gradient overlay inside card */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-                {/* Subtle bottom gradient for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-                {/* Clean, minimalist prev/next slide buttons in corner */}
-                <div className="absolute bottom-3 right-3 flex items-center gap-1.5 z-10">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveSlide((prev) =>
-                        prev === 0 ? HERO_VISUAL_SLIDES.length - 1 : prev - 1
-                      )
-                    }
-                    className="w-8 h-8 rounded-lg bg-black/60 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer border border-white/20"
-                    aria-label="Previous Slide"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveSlide(
-                        (prev) => (prev + 1) % HERO_VISUAL_SLIDES.length
-                      )
-                    }
-                    className="w-8 h-8 rounded-lg bg-black/60 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer border border-white/20"
-                    aria-label="Next Slide"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* 2. Unified Active Stage Details Panel (All info integrated cleanly together) */}
-              <div className="p-4 sm:p-5 bg-surface/98 backdrop-blur-md border-t border-border text-ink space-y-2">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-1 rounded-md bg-brand text-white text-[11px] font-extrabold uppercase tracking-wide">
-                      {currentSlide.stageTag}
-                    </span>
-                    <span className="text-xs font-semibold text-ink-subtle flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-brand shrink-0" />
-                      {currentSlide.location}
-                    </span>
+                {/* Clean Unified Overlay Info & Controls (No cluttered floating badges) */}
+                <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-4 z-20">
+                  <div className="text-white max-w-lg space-y-1">
+                    <div className="flex items-center gap-2 text-xs font-bold text-brand-accent drop-shadow-sm">
+                      <span className="tracking-wider uppercase">
+                        Stage 0{activeSlide + 1}
+                      </span>
+                      <span>·</span>
+                      <span className="flex items-center gap-1 text-white/90 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-brand-accent" />
+                        {currentSlide.location}
+                      </span>
+                    </div>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
+                      {currentSlide.title}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-1 drop-shadow-sm">
+                      {currentSlide.metrics}
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold text-brand bg-brand-light/70 px-2.5 py-0.5 rounded-md border border-brand-accent/30">
-                    {currentSlide.metrics}
-                  </span>
+
+                  {/* Carousel Prev/Next Buttons */}
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveSlide((prev) =>
+                          prev === 0 ? HERO_VISUAL_SLIDES.length - 1 : prev - 1
+                        )
+                      }
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/40 hover:bg-brand text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      aria-label="Previous Slide"
+                    >
+                      <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveSlide(
+                          (prev) => (prev + 1) % HERO_VISUAL_SLIDES.length
+                        )
+                      }
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/40 hover:bg-brand text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      aria-label="Next Slide"
+                    >
+                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                  </div>
                 </div>
-
-                <h3 className="text-base sm:text-lg font-extrabold text-ink leading-snug">
-                  {currentSlide.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed line-clamp-2">
-                  {currentSlide.description}
-                </p>
               </div>
 
-              {/* 3. Bottom 4 Stage Selector Tabs */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 bg-surface border-t border-border">
+              {/* Bottom 4 Stage Switcher Bar (Integrated Category & Stage Names) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 bg-surface/95 backdrop-blur-md border-t border-border">
                 {HERO_VISUAL_SLIDES.map((slide, idx) => {
                   const isActive = idx === activeSlide;
+                  const stageNames = [
+                    "Architecture & 3D",
+                    "Structural Design",
+                    "Commercial Planning",
+                    "Turnkey Interior",
+                  ];
                   return (
                     <button
                       key={slide.id}
                       type="button"
                       onClick={() => setActiveSlide(idx)}
-                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-b sm:border-b-0 border-border flex items-center gap-2.5 cursor-pointer ${
+                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${
                         isActive
-                          ? "bg-brand-light/80 border-b-2 sm:border-b-2 border-b-brand"
-                          : "hover:bg-surface-muted"
+                          ? "bg-brand/10 border-b-2 border-b-brand"
+                          : "hover:bg-surface-muted opacity-75 hover:opacity-100"
                       }`}
                     >
-                      <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shrink-0 border border-border">
+                      <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-md overflow-hidden shrink-0 hidden sm:block border border-border">
                         <Image
                           src={slide.mainImage}
                           alt={slide.title}
@@ -226,14 +227,18 @@ export default function HeroSection() {
                       </div>
                       <div className="min-w-0">
                         <span
-                          className={`text-[10px] font-extrabold uppercase block truncate ${
+                          className={`text-[10px] font-black tracking-wider uppercase block truncate ${
                             isActive ? "text-brand" : "text-ink-subtle"
                           }`}
                         >
                           Stage 0{idx + 1}
                         </span>
-                        <span className="text-xs font-bold text-ink block truncate">
-                          {slide.title.split(" ")[0]} {slide.title.split(" ")[1]}
+                        <span
+                          className={`text-xs font-bold block truncate ${
+                            isActive ? "text-ink font-extrabold" : "text-ink/80"
+                          }`}
+                        >
+                          {stageNames[idx]}
                         </span>
                       </div>
                     </button>
