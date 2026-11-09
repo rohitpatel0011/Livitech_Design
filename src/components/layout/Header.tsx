@@ -268,6 +268,37 @@ export default function Header() {
                 );
               })}
             </div>
+
+            {/* Mobile CTAs */}
+            <div className="flex items-center gap-2 pt-1">
+              <a
+                href="tel:+919876543210"
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-full text-xs font-bold border transition-colors ${
+                  isTransparent
+                    ? "text-white border-white/30 bg-black/40 hover:bg-white/10"
+                    : "text-ink border-border hover:bg-surface-muted bg-white"
+                }`}
+              >
+                <Phone
+                  className={`w-3.5 h-3.5 ${
+                    isTransparent ? "text-brand-light" : "text-brand"
+                  }`}
+                />
+                <span>Free Consultation</span>
+              </a>
+
+              <Link
+                href="/#contact"
+                onClick={() => {
+                  setActiveIndex(4);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex-1 inline-flex items-center justify-center gap-1 bg-brand hover:bg-brand-dark text-white text-xs font-bold py-2.5 rounded-full shadow-sm"
+              >
+                <span>Get Started</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         )}
       </header>
