@@ -38,7 +38,11 @@ export default function HeroSection() {
 
   const handleBookingStart = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/services/${selectedService}`);
+    const params = new URLSearchParams();
+    if (selectedCity) params.set("city", selectedCity);
+    if (plotArea) params.set("area", plotArea);
+    const queryString = params.toString();
+    router.push(`/services/${selectedService}${queryString ? `?${queryString}` : ""}`);
   };
 
   return (
@@ -144,23 +148,16 @@ export default function HeroSection() {
                 {/* Softened gradient overlay inside card */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-                {/* Clean Unified Overlay Info & Controls (No cluttered floating badges) */}
-                <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-4 z-20">
-                  <div className="text-white max-w-lg space-y-1">
-                    <div className="flex items-center gap-2 text-xs font-bold text-brand-accent drop-shadow-sm">
-                      <span className="tracking-wider uppercase">
-                        Stage 0{activeSlide + 1}
-                      </span>
-                      <span>·</span>
-                      <span className="flex items-center gap-1 text-white/90 font-medium">
-                        <MapPin className="w-3.5 h-3.5 text-brand-accent" />
-                        {currentSlide.location}
-                      </span>
-                    </div>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
+                {/* Clean Stage Content in Simple English (No redundant location badges) */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 z-20">
+                  <div className="text-white max-w-lg space-y-1.5">
+                    <h2 className="text-xl sm:text-2xl font-black text-white leading-snug drop-shadow-md">
                       {currentSlide.title}
                     </h2>
-                    <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-1 drop-shadow-sm">
+                    <p className="text-xs sm:text-sm text-white/95 leading-relaxed drop-shadow-sm font-medium line-clamp-2">
+                      {currentSlide.description}
+                    </p>
+                    <p className="text-[11px] sm:text-xs text-brand-light font-bold drop-shadow-xs pt-0.5 tracking-wide">
                       {currentSlide.metrics}
                     </p>
                   </div>
