@@ -6,6 +6,7 @@ export interface LeadSubmissionPayload {
   city: string;
   plotArea?: string;
   service?: string;
+  estimatedBudget?: string;
   notes?: string;
   source?: string;
 }
@@ -14,7 +15,16 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Partial<LeadSubmissionPayload>;
 
-    const { fullName, phone, city, plotArea, service, notes, source } = body;
+    const {
+      fullName,
+      phone,
+      city,
+      plotArea,
+      service,
+      estimatedBudget,
+      notes,
+      source,
+    } = body;
 
     // Basic validation
     if (!fullName || typeof fullName !== "string" || fullName.trim().length < 2) {
@@ -40,6 +50,7 @@ export async function POST(request: Request) {
       city: city || "Patna",
       plotArea: plotArea || "Not specified",
       service: service || "Architecture & Design",
+      estimatedBudget: estimatedBudget || "Not calculated",
       notes: notes?.trim() || "",
       source: source || "service-detail-page",
     });

@@ -13,10 +13,10 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ServiceSearchGrid />
+      <CostEstimatorSection />
       <ExteriorDesignsSection />
       <HappyClientsSection />
       <BlueprintRealitySlider />
-      <CostEstimatorSection />
       <ProjectJourney />
       <FeaturedProjectsSection />
       <TrustAndLocationSection />

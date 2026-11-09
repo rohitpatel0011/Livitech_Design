@@ -110,6 +110,19 @@ export interface ConstructionPackage {
   timelineMonths: number;
 }
 
+export interface CostPackage {
+  id: string;
+  name: string;
+  badge: string;
+  pricePerSqFt: string;
+  rateMin: number;
+  rateMax: number;
+  subtitle: string;
+  highlights: string[];
+  image: string;
+  popular?: boolean;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -1175,6 +1188,82 @@ export const CONSTRUCTION_PACKAGES: ConstructionPackage[] = [
       switches: "Smart Wi-Fi enabled automation touch switches",
     },
     timelineMonths: 12,
+  },
+];
+
+export const COST_PACKAGES: CostPackage[] = [
+  {
+    id: "basic",
+    name: "Essential Structure",
+    badge: "Foundation & Civil Essentials",
+    pricePerSqFt: "₹1,550 – ₹1,750 /sq.ft",
+    rateMin: 1550,
+    rateMax: 1750,
+    subtitle:
+      "A strong budget-friendly package with zero compromise on structural safety and essentials.",
+    highlights: [
+      "Grade-A TMT Steel & OPC/PPC Cement",
+      "Standard flush doors & aluminium windows",
+      "Emulsion wall finish & anti-skid flooring",
+      "Essential sanitary & electrical piping",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "standard",
+    name: "Standard Finishing",
+    badge: "Most Popular in Bihar",
+    pricePerSqFt: "₹1,950 – ₹2,250 /sq.ft",
+    rateMin: 1950,
+    rateMax: 2250,
+    subtitle:
+      "The homeowner favorite. Upgrade your home with branded steel, teak wood finish, and elegant tiles.",
+    highlights: [
+      "Top-tier brand cement & Fe-550D TMT steel",
+      "Teakwood finish main door & premium windows",
+      "Branded sanitaryware (Hindware/Parryware)",
+      "High-grade vitrified tiles & weather-proof paint",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    popular: true,
+  },
+  {
+    id: "advance",
+    name: "Advance Finishing",
+    badge: "Modern Luxury Living",
+    pricePerSqFt: "₹2,600 – ₹3,100 /sq.ft",
+    rateMin: 2600,
+    rateMax: 3100,
+    subtitle:
+      "Designed for modern lifestyle with designer architectural touches, false ceiling, and solar prep.",
+    highlights: [
+      "Superior structural engineering with AAC blocks",
+      "Designer solid teak doors & premium hardware",
+      "Modular kitchen setup & designer bathroom fittings",
+      "Textured designer exterior paint & profile lighting",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "premium",
+    name: "Bespoke Premium",
+    badge: "Ultimate Architectural Finish",
+    pricePerSqFt: "₹3,300 – ₹4,200+ /sq.ft",
+    rateMin: 3300,
+    rateMax: 4200,
+    subtitle:
+      "Absolute luxury meeting high-end lifestyle features, Italian marble feel, and bespoke woodwork.",
+    highlights: [
+      "Bespoke designer kitchen & full built-in wardrobes",
+      "Apex Ultima exterior finish & Italian-spec tile options",
+      "EV charging point & secure copper gas line prep",
+      "Dedicated senior architect site supervision",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
