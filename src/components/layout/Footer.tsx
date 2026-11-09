@@ -99,8 +99,34 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Bihar Service Locations SEO Links */}
+        <div className="mt-10 pt-6 border-t border-neutral-800">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 block mb-3">
+            Bihar Service Locations & City Hubs:
+          </span>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-neutral-400">
+            <Link href="/locations/patna" className="hover:text-white">Patna Architecture & Construction</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/bihta" className="hover:text-white">Bihta</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/muzaffarpur" className="hover:text-white">Muzaffarpur</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/gaya" className="hover:text-white">Gaya & Bodh Gaya</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/bhagalpur" className="hover:text-white">Bhagalpur</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/darbhanga" className="hover:text-white">Darbhanga</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/begusarai" className="hover:text-white">Begusarai</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/ara" className="hover:text-white">Ara (Bhojpur)</Link>
+            <span className="text-neutral-600">·</span>
+            <Link href="/locations/purnia" className="hover:text-white">Purnia</Link>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
+        <div className="mt-10 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
           <p>© 2026 Livitech Design (livitechdesign.in). All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>

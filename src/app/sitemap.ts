@@ -1,9 +1,11 @@
 import { MetadataRoute } from "next";
 import { CORE_SERVICES, EXTERIOR_DESIGNS } from "@/data/livitectData";
+import { BIHAR_SEO_CITIES } from "@/data/citySeoData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://livitechdesign.in";
 
+  // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
@@ -13,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Dynamic Service Pages (/services/[slug])
   const serviceRoutes: MetadataRoute.Sitemap = CORE_SERVICES.map((s) => ({
     url: `${baseUrl}/services/${s.slug}`,
     lastModified: new Date(),
@@ -20,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  // Dynamic Exterior Designs Showcase (/exterior-designs/[slug])
   const exteriorDesignRoutes: MetadataRoute.Sitemap = EXTERIOR_DESIGNS.map(
     (post) => ({
       url: `${baseUrl}/exterior-designs/${post.slug}`,
@@ -29,5 +33,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...exteriorDesignRoutes];
+  // Programmatic Bihar City SEO Pages (/locations/[city])
+  const cityLocationRoutes: MetadataRoute.Sitemap = BIHAR_SEO_CITIES.map((c) => ({
+    url: `${baseUrl}/locations/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...exteriorDesignRoutes,
+    ...cityLocationRoutes,
+  ];
 }
