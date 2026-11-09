@@ -43,7 +43,10 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative bg-ink pt-8 pb-16 lg:pt-16 lg:pb-24 border-b border-border overflow-hidden min-h-[92vh] flex flex-col justify-between">
+    <section
+      id="hero-section"
+      className="relative bg-ink pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-border overflow-hidden min-h-screen flex flex-col justify-between"
+    >
       {/* FULL-WIDTH & FULL-HEIGHT DYNAMIC BACKGROUND IMAGES IN FLIP POSITION (-scale-x-100) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         {HERO_VISUAL_SLIDES.map((slide, idx) => {
