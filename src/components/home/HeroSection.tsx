@@ -13,7 +13,6 @@ import {
   Sparkles,
   Layers,
   Ruler,
-  RotateCcw,
 } from "lucide-react";
 import {
   HERO_VISUAL_SLIDES,
@@ -24,7 +23,6 @@ import {
 export default function HeroSection() {
   const router = useRouter();
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
   const [selectedService, setSelectedService] = useState(CORE_SERVICES[0].id);
   const [selectedCity, setSelectedCity] = useState(BIHAR_CITIES[0]);
   const [plotArea, setPlotArea] = useState("2000");
@@ -33,7 +31,6 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HERO_VISUAL_SLIDES.length);
-      setIsFlipped(false);
     }, 6000);
     return () => clearInterval(timer);
   }, []);
@@ -47,7 +44,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative bg-ink pt-8 pb-16 lg:pt-16 lg:pb-24 border-b border-border overflow-hidden min-h-[92vh] flex flex-col justify-between">
-      {/* FULL-WIDTH & FULL-HEIGHT DYNAMIC BACKGROUND IMAGES (Syncs with Stage 01 to 04) */}
+      {/* FULL-WIDTH & FULL-HEIGHT DYNAMIC BACKGROUND IMAGES IN FLIP POSITION (-scale-x-100) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         {HERO_VISUAL_SLIDES.map((slide, idx) => {
           const isActive = idx === activeSlide;
@@ -64,7 +61,7 @@ export default function HeroSection() {
                 fill
                 priority={idx === 0}
                 sizes="100vw"
-                className="object-cover object-center"
+                className="object-cover object-center -scale-x-100"
               />
             </div>
           );
@@ -133,127 +130,95 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel with 3D Flip */}
+          {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel (Clean & Simple Animation) */}
           <div className="lg:col-span-7">
             <div className="relative rounded-2xl overflow-hidden border border-white/25 bg-ink/75 shadow-2xl group backdrop-blur-md">
-              {/* Main Stage Image with 3D Flip Animation */}
-              <div
-                key={`${activeSlide}-${isFlipped}`}
-                className="relative aspect-[16/10] w-full overflow-hidden [perspective:1200px]"
-              >
-                <div className="relative w-full h-full animate-hero-flip [transform-style:preserve-3d]">
-                  <Image
-                    src={
-                      isFlipped
-                        ? currentSlide.blueprintThumb
-                        : currentSlide.mainImage
-                    }
-                    alt={currentSlide.title}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover transition-transform duration-700 scale-100 group-hover:scale-105"
-                  />
-                  {/* Softened gradient overlay inside card */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              {/* Main Stage Image with Simple Smooth Animation */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <Image
+                  key={activeSlide}
+                  src={currentSlide.mainImage}
+                  alt={currentSlide.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-all duration-700 scale-100 group-hover:scale-105"
+                />
+                {/* Softened gradient overlay inside card */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                  {/* Top Left Stage Badge & 3D Flip Toggle */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
-                    <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
-                      {isFlipped
-                        ? "2D VASTU NAKSHA BLUEPRINT"
-                        : currentSlide.stageTag}
+                {/* Top Left Stage Badge */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
+                  <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                    {currentSlide.stageTag}
+                  </span>
+                  <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-brand-light" />
+                    {currentSlide.location}
+                  </span>
+                </div>
+
+                {/* Floating Blueprint / Working Detail Picture-in-Picture Card */}
+                <div className="hidden sm:flex absolute bottom-24 right-4 bg-white/95 backdrop-blur-md p-2.5 rounded-xl border border-border shadow-lg items-center gap-3 max-w-xs z-20">
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-border">
+                    <Image
+                      src={currentSlide.blueprintThumb}
+                      alt="Stage technical preview"
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand block">
+                      Live Working Spec
                     </span>
+                    <p className="text-xs font-bold text-ink line-clamp-1">
+                      {currentSlide.metrics}
+                    </p>
+                    <p className="text-[11px] text-ink-subtle line-clamp-2 mt-0.5">
+                      {currentSlide.description}
+                    </p>
+                  </div>
+                </div>
 
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setIsFlipped((prev) => !prev)}
-                        className="px-2.5 py-1.5 rounded-lg bg-black/60 hover:bg-brand text-white backdrop-blur-md text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer border border-white/20 shadow-xs"
-                        title="Click to flip between 3D Photo & 2D Technical Plan"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                        <span>{isFlipped ? "View 3D" : "Flip 2D/3D"}</span>
-                      </button>
-
-                      <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-brand-light" />
-                        {currentSlide.location}
-                      </span>
-                    </div>
+                {/* Bottom Overlay Info & Prev/Next Controls */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 z-20">
+                  <div className="text-white max-w-lg">
+                    <h2 className="text-lg sm:text-xl font-bold leading-snug drop-shadow-sm">
+                      {currentSlide.title}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-neutral-200 mt-1 line-clamp-2 sm:hidden drop-shadow-sm">
+                      {currentSlide.description}
+                    </p>
                   </div>
 
-                  {/* Floating Blueprint / Working Detail Picture-in-Picture Card (Click to Flip) */}
-                  <div
-                    onClick={() => setIsFlipped((prev) => !prev)}
-                    className="hidden sm:flex absolute bottom-24 right-4 bg-white/95 backdrop-blur-md p-2.5 rounded-xl border border-border shadow-lg items-center gap-3 max-w-xs z-20 cursor-pointer hover:border-brand transition-colors"
-                  >
-                    <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-border">
-                      <Image
-                        src={
-                          isFlipped
-                            ? currentSlide.mainImage
-                            : currentSlide.blueprintThumb
-                        }
-                        alt="Stage technical preview"
-                        fill
-                        sizes="64px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="text-left">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-brand block">
-                        {isFlipped ? "3D Reality Preview" : "Live Working Spec"}
-                      </span>
-                      <p className="text-xs font-bold text-ink line-clamp-1">
-                        {currentSlide.metrics}
-                      </p>
-                      <p className="text-[11px] text-ink-subtle line-clamp-2 mt-0.5">
-                        {currentSlide.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Bottom Overlay Info & Prev/Next Controls */}
-                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 z-20">
-                    <div className="text-white max-w-lg">
-                      <h2 className="text-lg sm:text-xl font-bold leading-snug drop-shadow-sm">
-                        {currentSlide.title}
-                      </h2>
-                      <p className="text-xs sm:text-sm text-neutral-200 mt-1 line-clamp-2 sm:hidden drop-shadow-sm">
-                        {currentSlide.description}
-                      </p>
-                    </div>
-
-                    {/* Carousel Prev/Next Buttons */}
-                    <div className="flex items-center gap-2 shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsFlipped(false);
-                          setActiveSlide((prev) =>
-                            prev === 0 ? HERO_VISUAL_SLIDES.length - 1 : prev - 1
-                          );
-                        }}
-                        className="w-9 h-9 rounded-lg bg-white/20 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
-                        aria-label="Previous Slide"
-                      >
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsFlipped(false);
-                          setActiveSlide(
-                            (prev) => (prev + 1) % HERO_VISUAL_SLIDES.length
-                          );
-                        }}
-                        className="w-9 h-9 rounded-lg bg-white/20 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
-                        aria-label="Next Slide"
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                    </div>
+                  {/* Carousel Prev/Next Buttons */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveSlide((prev) =>
+                          prev === 0 ? HERO_VISUAL_SLIDES.length - 1 : prev - 1
+                        )
+                      }
+                      className="w-9 h-9 rounded-lg bg-white/20 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      aria-label="Previous Slide"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveSlide(
+                          (prev) => (prev + 1) % HERO_VISUAL_SLIDES.length
+                        )
+                      }
+                      className="w-9 h-9 rounded-lg bg-white/20 hover:bg-brand text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      aria-label="Next Slide"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -266,10 +231,7 @@ export default function HeroSection() {
                     <button
                       key={slide.id}
                       type="button"
-                      onClick={() => {
-                        setIsFlipped(false);
-                        setActiveSlide(idx);
-                      }}
+                      onClick={() => setActiveSlide(idx)}
                       className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${
                         isActive
                           ? "bg-brand-light/80 border-b-2 border-b-brand"
