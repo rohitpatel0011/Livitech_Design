@@ -9,26 +9,100 @@ import {
   MapPin,
   Send,
   Loader2,
-  Sparkles,
   ShieldCheck,
-  FileSpreadsheet,
-  MessageSquare,
-  Building2,
-  Paintbrush,
-  Hammer,
-  Compass,
-  Check,
+  Layers,
 } from "lucide-react";
-import { COST_PACKAGES, BIHAR_CITIES } from "@/data/livitectData";
+import { BIHAR_CITIES } from "@/data/livitectData";
+
+interface CostPackage {
+  id: string;
+  name: string;
+  badge: string;
+  pricePerSqFt: string;
+  rateMin: number;
+  rateMax: number;
+  subtitle: string;
+  highlights: string[];
+  image: string;
+  popular?: boolean;
+}
+
+const COST_PACKAGES: CostPackage[] = [
+  {
+    id: "basic",
+    name: "Essential Structure",
+    badge: "Foundation & Civil Essentials",
+    pricePerSqFt: "₹1,550 – ₹1,750 /sq.ft",
+    rateMin: 1550,
+    rateMax: 1750,
+    subtitle: "A strong budget-friendly package calibrated for Bihar soil & weather conditions.",
+    highlights: [
+      "Grade-A TMT Steel & OPC/PPC Cement",
+      "Standard flush doors & aluminium windows",
+      "Emulsion wall finish & anti-skid flooring",
+      "Essential sanitary & electrical piping",
+    ],
+    image: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "standard",
+    name: "Standard Finishing",
+    badge: "Most Popular in Bihar",
+    pricePerSqFt: "₹1,950 – ₹2,250 /sq.ft",
+    rateMin: 1950,
+    rateMax: 2250,
+    subtitle: "The homeowner favorite. Branded steel, teak wood finish, and elegant vitrified tiles.",
+    highlights: [
+      "Top-tier brand cement & Fe-550D TMT steel",
+      "Teakwood finish main door & premium windows",
+      "Branded sanitaryware (Hindware/Parryware)",
+      "High-grade vitrified tiles & weather-proof paint",
+    ],
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    popular: true,
+  },
+  {
+    id: "advance",
+    name: "Advance Finishing",
+    badge: "Modern Luxury Living",
+    pricePerSqFt: "₹2,600 – ₹3,100 /sq.ft",
+    rateMin: 2600,
+    rateMax: 3100,
+    subtitle: "Designed for modern lifestyle with designer architectural touches & false ceiling.",
+    highlights: [
+      "Superior structural engineering with AAC blocks",
+      "Designer solid teak doors & premium hardware",
+      "Modular kitchen setup & designer bathroom fittings",
+      "Textured designer exterior paint & profile lighting",
+    ],
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "premium",
+    name: "Bespoke Premium",
+    badge: "Ultimate Architectural Finish",
+    pricePerSqFt: "₹3,300 – ₹4,200+ /sq.ft",
+    rateMin: 3300,
+    rateMax: 4200,
+    subtitle: "Absolute luxury meeting high-end lifestyle features and Italian marble finishes.",
+    highlights: [
+      "Bespoke designer kitchen & built-in wardrobes",
+      "Apex Ultima exterior finish & Italian-spec tiles",
+      "EV charging point & secure copper gas line prep",
+      "Dedicated senior architect site supervision",
+    ],
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+const AREA_QUICK_SELECT = [1000, 1500, 2000, 3000, 4500];
 
 export default function CostEstimatorSection() {
-  const [selectedPackageId, setSelectedPackageId] = useState(
-    COST_PACKAGES[1].id
-  );
+  const [selectedPackageId, setSelectedPackageId] = useState(COST_PACKAGES[1].id);
   const [plotArea, setPlotArea] = useState<number>(2000);
   const [selectedCity, setSelectedCity] = useState(BIHAR_CITIES[0]);
 
-  // Lead capture state
+  // Lead capture form state
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -40,18 +114,8 @@ export default function CostEstimatorSection() {
 
   const estimatedMin = plotArea * currentPkg.rateMin;
   const estimatedMax = plotArea * currentPkg.rateMax;
-  const estimatedAvg = Math.round((estimatedMin + estimatedMax) / 2);
 
-  // Stage breakdown calculations (40% Civil, 30% Finishing, 20% MEP & Doors, 10% Architecture)
-  const civilCost = Math.round(estimatedAvg * 0.4);
-  const finishingCost = Math.round(estimatedAvg * 0.3);
-  const mepDoorsCost = Math.round(estimatedAvg * 0.2);
-  const architectureCost = Math.round(estimatedAvg * 0.1);
-
-  const formatINR = (num: number) => {
-    if (num >= 10000000) {
-      return `₹${(num / 10000000).toFixed(2)} Crore`;
-    }
+  const formatLakhs = (num: number) => {
     return `₹${(num / 100000).toFixed(2)} Lakhs`;
   };
 
@@ -59,439 +123,304 @@ export default function CostEstimatorSection() {
     e.preventDefault();
     setErrorMsg("");
 
-    const cleanDigits = phone.replace(/\D/g, "");
-    if (!fullName.trim() || cleanDigits.length < 10) {
-      setErrorMsg("Kripya apna poora naam aur 10-digit mobile number dalein.");
+    if (!fullName || phone.replace(/\D/g, "").length < 10) {
+      setErrorMsg("Kripya apna naam aur valid 10-digit mobile number dalein.");
       return;
     }
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/leads", {
+      await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: fullName.trim(),
-          phone: cleanDigits,
+          fullName,
+          phone,
           city: selectedCity,
           plotArea: `${plotArea} sq.ft`,
           service: `Cost Estimator (${currentPkg.name})`,
-          estimatedBudget: `${formatINR(estimatedMin)} – ${formatINR(
-            estimatedMax
-          )}`,
+          estimatedBudget: `${formatLakhs(estimatedMin)} – ${formatLakhs(estimatedMax)}`,
           source: "Interactive Cost Calculator Section",
         }),
       });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Submission failed");
-      }
       setSubmitted(true);
     } catch {
-      setErrorMsg(
-        "Network connect hone mein samasya aayi. Kripya seedha WhatsApp par sampark karein."
-      );
+      setErrorMsg("Network error aaya hai. Aap seedha Patna HQ call kar sakte hain.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  const areaPills = [1000, 1500, 2000, 3000, 4500];
-
   return (
-    <section
-      id="cost-estimator"
-      className="py-16 lg:py-24 bg-surface border-b border-border scroll-mt-20"
-    >
+    <section id="cost-estimator" className="py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6D3C3]/50 text-[#8E4F2A] text-xs font-extrabold uppercase tracking-wider">
             <Calculator className="w-3.5 h-3.5" />
             <span>Interactive BOQ Estimator</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mt-3 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A120E] mt-3">
             Know your construction cost before you build.
           </h2>
-          <p className="text-sm sm:text-base text-ink-muted mt-3 leading-relaxed">
-            Patna aur Bihar ke current material market rates ke hisab se apne
-            plot size aur quality package ke mutabiq instant rough cost
-            calculate karein. Transparent pricing with complete material
-            breakdown.
+          <p className="text-sm sm:text-base text-[#4A4A46] mt-3 leading-relaxed">
+            Patna aur Bihar ke current material market rates ke hisab se apne plot size aur quality package ke mutabiq instant rough cost calculate karein. Transparent pricing with complete material breakdown.
           </p>
         </div>
 
-        {/* UNIFIED INTERACTIVE ESTIMATOR DASHBOARD */}
-        <div className="bg-surface-muted rounded-3xl border border-border p-5 sm:p-8 lg:p-10 shadow-booking space-y-8">
-          {/* STEP 1 HEADER & PACKAGE SELECTOR */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-border">
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-xs font-bold">
-                  1
-                </span>
-                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-ink">
-                  Select Quality Package
-                </span>
-                <span className="text-xs text-brand font-semibold hidden md:inline">
-                  — Currently: {currentPkg.name}
-                </span>
+        {/* STEP 1: PACKAGE SELECTOR GRID */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-extrabold uppercase tracking-wider text-[#8E4F2A] flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#8E4F2A] text-white flex items-center justify-center text-xs">1</span>
+              <span>Select Quality Package (Calibrated for Bihar Soil & Weather)</span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {COST_PACKAGES.map((pkg) => {
+              const isSelected = pkg.id === selectedPackageId;
+              return (
+                <div
+                  key={pkg.id}
+                  onClick={() => setSelectedPackageId(pkg.id)}
+                  className={`cursor-pointer rounded-2xl border-2 transition-all overflow-hidden flex flex-col justify-between bg-white shadow-sm hover:shadow-md ${
+                    isSelected
+                      ? "border-[#8E4F2A] ring-2 ring-[#8E4F2A]/20 bg-[#E6D3C3]/10"
+                      : "border-[#E6D3C3]/60 hover:border-[#8E4F2A]/40"
+                  }`}
+                >
+                  <div>
+                    <div className="relative h-36 w-full bg-[#1A120E]">
+                      <Image
+                        src={pkg.image}
+                        alt={pkg.name}
+                        fill
+                        sizes="300px"
+                        className="object-cover opacity-90"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1A120E]/80 to-transparent" />
+                      {pkg.popular && (
+                        <span className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-[#8E4F2A] text-white text-[10px] font-extrabold uppercase shadow">
+                          Most Popular
+                        </span>
+                      )}
+                      <div className="absolute bottom-2.5 left-3 right-3 text-white">
+                        <span className="text-[10px] font-bold text-[#E6D3C3] uppercase block">
+                          {pkg.badge}
+                        </span>
+                        <h4 className="text-base font-extrabold">{pkg.name}</h4>
+                      </div>
+                    </div>
+
+                    <div className="p-4 space-y-3">
+                      <div className="text-sm font-extrabold text-[#8E4F2A]">
+                        {pkg.pricePerSqFt}
+                      </div>
+                      <p className="text-xs text-[#4A4A46] leading-relaxed">
+                        {pkg.subtitle}
+                      </p>
+
+                      <ul className="space-y-1.5 pt-2 border-t border-[#E6D3C3]/40">
+                        {pkg.highlights.map((hl) => (
+                          <li
+                            key={hl}
+                            className="flex items-center gap-2 text-[11px] font-medium text-[#4A4A46]"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#8E4F2A] shrink-0" />
+                            <span className="line-clamp-1">{hl}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="p-4 pt-0">
+                    <button
+                      type="button"
+                      className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all ${
+                        isSelected
+                          ? "bg-[#8E4F2A] text-white shadow-sm"
+                          : "bg-[#F9F6F0] text-[#1A120E] border border-[#E6D3C3] hover:bg-[#E6D3C3]/30"
+                      }`}
+                    >
+                      {isSelected ? "Package Selected ✓" : "Select Package"}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* STEP 2: CUSTOMIZE PARAMETERS & MATERIAL BREAKDOWN */}
+        <div className="bg-white rounded-3xl border border-[#E6D3C3] p-6 sm:p-10 shadow-sm">
+          <div className="mb-8">
+            <h3 className="text-sm font-extrabold uppercase tracking-wider text-[#8E4F2A] flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#8E4F2A] text-white flex items-center justify-center text-xs">2</span>
+              <span>Customize Parameters & Material Breakdown ({currentPkg.name})</span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            {/* Left Column: Calculator Controls & Estimated Total */}
+            <div className="lg:col-span-6 space-y-6">
+              
+              {/* Area Slider */}
+              <div className="space-y-3 bg-[#F9F6F0] p-5 rounded-2xl border border-[#E6D3C3]/50">
+                <label className="text-xs font-bold uppercase text-[#4A4A46] flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <Ruler className="w-4 h-4 text-[#8E4F2A]" /> Plot / Built-up Area
+                  </span>
+                  <span className="text-[#8E4F2A] font-extrabold text-sm">
+                    {plotArea} sq.ft
+                  </span>
+                </label>
+                <input
+                  type="range"
+                  min={500}
+                  max={10000}
+                  step={100}
+                  value={plotArea}
+                  onChange={(e) => setPlotArea(Number(e.target.value))}
+                  className="w-full accent-[#8E4F2A] cursor-pointer"
+                />
+
+                {/* Quick Select Chips */}
+                <div className="pt-1 flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] text-[#4A4A46] font-semibold">Quick select:</span>
+                  {AREA_QUICK_SELECT.map((sqft) => (
+                    <button
+                      key={sqft}
+                      type="button"
+                      onClick={() => setPlotArea(sqft)}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                        plotArea === sqft
+                          ? "bg-[#8E4F2A] text-white"
+                          : "bg-white text-[#4A4A46] border border-[#E6D3C3] hover:border-[#8E4F2A]"
+                      }`}
+                    >
+                      {sqft} sq.ft
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-brand bg-brand-light/60 px-3 py-1 rounded-full border border-brand/20 self-start sm:self-auto">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Patna Rate Calibration 2026</span>
+
+              {/* City / Location Dropdown */}
+              <div className="space-y-2 bg-[#F9F6F0] p-5 rounded-2xl border border-[#E6D3C3]/50">
+                <label className="text-xs font-bold uppercase text-[#4A4A46] flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-[#8E4F2A]" /> Bihar City / Location
+                </label>
+                <select
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                  className="w-full bg-white border border-[#E6D3C3] rounded-xl px-4 py-3 text-sm font-bold text-[#1A120E] focus:outline-none focus:border-[#8E4F2A]"
+                >
+                  {BIHAR_CITIES.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Estimated Total Project Cost Box */}
+              <div className="bg-[#1A120E] text-white rounded-2xl p-6 space-y-3 shadow-md">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#E6D3C3]">
+                    Estimated Total Project Cost ({currentPkg.name})
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded bg-[#8E4F2A] text-[10px] font-bold text-white">
+                    Patna Rate Calibration 2026
+                  </span>
+                </div>
+                <div className="text-3xl sm:text-4xl font-extrabold text-[#E6D3C3] flex items-center gap-2">
+                  <span>{formatLakhs(estimatedMin)}</span>
+                  <span className="text-white/60 text-lg font-normal">to</span>
+                  <span>{formatLakhs(estimatedMax)}</span>
+                </div>
+                <p className="text-xs text-white/70 pt-2 border-t border-white/10 leading-relaxed">
+                  *Includes architectural 2D/3D design, civil RCC structure, raw materials (cement, TMT steel, sand, bricks), skilled labour, and finishing as per {currentPkg.name} specifications.
+                </p>
               </div>
             </div>
 
-            {/* 4 Sleek Package Selector Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {COST_PACKAGES.map((pkg) => {
-                const isSelected = pkg.id === selectedPackageId;
-                return (
-                  <button
-                    key={pkg.id}
-                    type="button"
-                    onClick={() => setSelectedPackageId(pkg.id)}
-                    className={`text-left rounded-2xl border-2 transition-all p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer relative overflow-hidden ${
-                      isSelected
-                        ? "bg-surface border-brand ring-2 ring-brand/30 shadow-md"
-                        : "bg-surface/80 border-border hover:border-brand/40 hover:bg-surface"
-                    }`}
-                  >
-                    {/* Top Row: Mini Photo + Name + Badge */}
+            {/* Right Column: Stage-Wise Breakdown & WhatsApp Lead Gate */}
+            <div className="lg:col-span-6 bg-[#F9F6F0] rounded-2xl border border-[#E6D3C3] p-6 sm:p-8 flex flex-col justify-between space-y-6">
+              
+              {/* Stage-Wise Material Cost Distribution */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#1A120E] flex items-center gap-1.5">
+                    <Layers className="w-4 h-4 text-[#8E4F2A]" /> Stage-Wise Material Cost Distribution
+                  </h4>
+                  <span className="text-xs font-bold text-[#8E4F2A]">~{formatLakhs((estimatedMin + estimatedMax) / 2)} Avg</span>
+                </div>
+
+                <div className="space-y-2.5">
+                  <div className="bg-white p-3 rounded-xl border border-[#E6D3C3]/60 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[#4A4A46]">Civil RCC Work & TMT Steel (40%)</span>
+                    <span className="font-extrabold text-[#1A120E]">{formatLakhs(estimatedMin * 0.40)}</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-[#E6D3C3]/60 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[#4A4A46]">Finishing, Tiles & Paint (30%)</span>
+                    <span className="font-extrabold text-[#1A120E]">{formatLakhs(estimatedMin * 0.30)}</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-[#E6D3C3]/60 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[#4A4A46]">Doors, Windows, Electrical & Plumbing (20%)</span>
+                    <span className="font-extrabold text-[#1A120E]">{formatLakhs(estimatedMin * 0.20)}</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-[#E6D3C3]/60 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[#4A4A46]">Architecture, Vastu, Structural DPR & Supervision (10%)</span>
+                    <span className="font-extrabold text-[#1A120E]">{formatLakhs(estimatedMin * 0.10)}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Official Engineer BOQ Lead Gate */}
+              <div className="pt-4 border-t border-[#E6D3C3]">
+                {submitted ? (
+                  <div className="py-8 text-center space-y-3 bg-white rounded-xl p-4 border border-[#E6D3C3]">
+                    <div className="w-12 h-12 rounded-full bg-[#E6D3C3]/40 text-[#8E4F2A] flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-7 h-7" />
+                    </div>
+                    <h5 className="text-base font-extrabold text-[#1A120E]">BOQ Report Sent!</h5>
+                    <p className="text-xs text-[#4A4A46]">
+                      Aapke area ({plotArea} sq.ft) ka detailed estimate <strong>{phone}</strong> par WhatsApp par bhej diya gaya hai.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="text-xs font-bold text-[#8E4F2A] underline"
+                    >
+                      Calculate again
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleEstimateSubmit} className="space-y-3.5">
                     <div>
-                      <div className="flex items-center justify-between gap-2 mb-2.5">
-                        <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-border">
-                          <Image
-                            src={pkg.image}
-                            alt={pkg.name}
-                            fill
-                            sizes="48px"
-                            className="object-cover"
-                          />
-                        </div>
-
-                        {pkg.popular ? (
-                          <span className="px-2 py-0.5 rounded-full bg-brand text-white text-[10px] font-black uppercase tracking-wide shadow-xs">
-                            Most Popular
-                          </span>
-                        ) : isSelected ? (
-                          <span className="px-2 py-0.5 rounded-full bg-brand/10 text-brand text-[10px] font-bold flex items-center gap-1">
-                            <Check className="w-3 h-3" /> Selected
-                          </span>
-                        ) : (
-                          <span className="text-[10px] font-bold text-ink-subtle uppercase">
-                            {pkg.badge.split(" ")[0]}
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="text-sm font-extrabold text-ink leading-tight">
-                        {pkg.name}
-                      </h3>
-                      <div className="text-sm font-black text-brand mt-0.5">
-                        {pkg.pricePerSqFt}
-                      </div>
-                      <p className="text-[11px] text-ink-muted leading-tight mt-1 line-clamp-2">
-                        {pkg.subtitle}
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#8E4F2A] block">
+                        Official Engineer BOQ
+                      </span>
+                      <h4 className="text-base font-extrabold text-[#1A120E]">
+                        Receive Itemized Estimate on WhatsApp
+                      </h4>
+                      <p className="text-[11px] text-[#4A4A46] mt-0.5">
+                        Enter your contact details to download the complete stage-wise material breakdown sheet formatted for Bihar home construction.
                       </p>
                     </div>
 
-                    {/* Bottom Status Indicator Bar */}
-                    <div className="pt-3 mt-2 border-t border-border flex items-center justify-between">
-                      <span className="text-[10px] font-semibold text-ink-subtle">
-                        {pkg.highlights.length} Specifications
-                      </span>
-                      <span
-                        className={`text-xs font-bold ${
-                          isSelected ? "text-brand" : "text-ink-subtle"
-                        }`}
-                      >
-                        {isSelected ? "Active ✓" : "Select →"}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* STEP 2: SPLIT CALCULATOR CONFIGURATOR & SUMMARY */}
-          <div className="pt-4 border-t border-border">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-xs font-bold">
-                2
-              </span>
-              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-ink">
-                Customize Parameters & Calculate Estimate
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* LEFT COLUMN (7 Cols): Area, Location, Material Breakdown & Specs */}
-              <div className="lg:col-span-7 space-y-6">
-                {/* Built-Up Area Card */}
-                <div className="bg-surface rounded-2xl p-5 border border-border space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold uppercase text-ink-muted flex items-center gap-1.5">
-                      <Ruler className="w-4 h-4 text-brand" /> Plot / Built-up Area
-                    </label>
-                    <span className="text-brand font-black text-base bg-brand-light px-3 py-1 rounded-lg">
-                      {plotArea.toLocaleString()} sq.ft
-                    </span>
-                  </div>
-
-                  <input
-                    type="range"
-                    min={500}
-                    max={10000}
-                    step={100}
-                    value={plotArea}
-                    onChange={(e) => setPlotArea(Number(e.target.value))}
-                    className="w-full accent-brand cursor-pointer h-2 bg-neutral-200 rounded-lg"
-                  />
-
-                  {/* Quick Area Pills */}
-                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                    <span className="text-[11px] text-ink-subtle font-medium">Quick select:</span>
-                    {areaPills.map((pill) => (
-                      <button
-                        key={pill}
-                        type="button"
-                        onClick={() => setPlotArea(pill)}
-                        className={`text-[11px] px-3 py-1 rounded-lg border font-bold transition-all cursor-pointer ${
-                          plotArea === pill
-                            ? "bg-brand text-white border-brand shadow-xs"
-                            : "bg-surface-muted text-ink-muted border-border hover:bg-brand-light"
-                        }`}
-                      >
-                        {pill.toLocaleString()} sq.ft
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* City Selector */}
-                <div className="bg-surface rounded-2xl p-5 border border-border space-y-2 shadow-xs">
-                  <label className="text-xs font-bold uppercase text-ink-muted flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-brand" /> Bihar City / Location
-                  </label>
-                  <select
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.target.value)}
-                    className="w-full bg-surface-muted border border-border rounded-xl px-4 py-3 text-sm font-bold text-ink focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand cursor-pointer"
-                  >
-                    {BIHAR_CITIES.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Stage-Wise Material Cost Distribution */}
-                <div className="bg-surface rounded-2xl p-5 sm:p-6 border border-border space-y-4 shadow-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-border">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-ink flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-brand" />
-                      Stage-Wise Material Cost Distribution
-                    </span>
-                    <span className="text-xs font-black text-brand">
-                      ~{formatINR(estimatedAvg)} Avg
-                    </span>
-                  </div>
-
-                  {/* 1. Civil Work & TMT Steel (40%) */}
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-semibold text-ink">
-                      <span className="flex items-center gap-1.5">
-                        <Building2 className="w-3.5 h-3.5 text-brand" />
-                        Civil RCC Work & TMT Steel (40%)
-                      </span>
-                      <span className="font-extrabold text-brand">
-                        {formatINR(civilCost)}
-                      </span>
-                    </div>
-                    <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-brand h-full rounded-full transition-all duration-300"
-                        style={{ width: "40%" }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* 2. Finishing, Tiles & Paint (30%) */}
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-semibold text-ink">
-                      <span className="flex items-center gap-1.5">
-                        <Paintbrush className="w-3.5 h-3.5 text-brand-accent" />
-                        Finishing, Tiles & Paint (30%)
-                      </span>
-                      <span className="font-extrabold text-brand">
-                        {formatINR(finishingCost)}
-                      </span>
-                    </div>
-                    <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-brand-accent h-full rounded-full transition-all duration-300"
-                        style={{ width: "30%" }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* 3. Doors, Windows & MEP (20%) */}
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-semibold text-ink">
-                      <span className="flex items-center gap-1.5">
-                        <Hammer className="w-3.5 h-3.5 text-ink-muted" />
-                        Doors, Windows, Electrical & Plumbing (20%)
-                      </span>
-                      <span className="font-extrabold text-brand">
-                        {formatINR(mepDoorsCost)}
-                      </span>
-                    </div>
-                    <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-ink-muted h-full rounded-full transition-all duration-300"
-                        style={{ width: "20%" }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* 4. Architecture & Supervision (10%) */}
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs font-semibold text-ink">
-                      <span className="flex items-center gap-1.5">
-                        <Compass className="w-3.5 h-3.5 text-brand-dark" />
-                        Architecture, Vastu, Structural DPR & Supervision (10%)
-                      </span>
-                      <span className="font-extrabold text-brand">
-                        {formatINR(architectureCost)}
-                      </span>
-                    </div>
-                    <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-brand-dark h-full rounded-full transition-all duration-300"
-                        style={{ width: "10%" }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Active Package Specification Highlights */}
-                <div className="bg-surface rounded-2xl p-5 border border-border shadow-xs">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-ink block mb-3">
-                    Included in {currentPkg.name}:
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {currentPkg.highlights.map((hl, hIdx) => (
-                      <div
-                        key={hIdx}
-                        className="flex items-start gap-2 text-xs text-ink-muted"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-brand shrink-0 mt-0.5" />
-                        <span className="leading-snug font-medium">{hl}</span>
+                    {errorMsg && (
+                      <div className="p-2.5 rounded-lg bg-red-50 border border-red-200 text-xs font-semibold text-red-700">
+                        {errorMsg}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                    )}
 
-              {/* RIGHT COLUMN (5 Cols): Live Summary & WhatsApp BOQ Lead Form */}
-              <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-                {/* Total Cost Calculation Box */}
-                <div className="bg-surface rounded-2xl border-2 border-brand/50 p-6 space-y-3 shadow-booking">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-ink-subtle">
-                      Estimated Total Project Cost
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-brand-light text-brand text-[11px] font-black">
-                      {currentPkg.name}
-                    </span>
-                  </div>
-
-                  <div className="text-2xl sm:text-3xl font-black text-brand flex items-center gap-2 flex-wrap">
-                    <span>{formatINR(estimatedMin)}</span>
-                    <span className="text-ink-subtle text-lg font-normal">to</span>
-                    <span>{formatINR(estimatedMax)}</span>
-                  </div>
-
-                  <p className="text-xs text-ink-muted pt-2 border-t border-border leading-relaxed">
-                    *Includes architectural 2D/3D design, civil RCC structure, raw
-                    materials (cement, TMT steel, sand, bricks), skilled labour, and
-                    finishing as per {currentPkg.name} specifications in {selectedCity.split("(")[0]}.
-                  </p>
-                </div>
-
-                {/* Lead Capture Gate & WhatsApp BOQ Sheet */}
-                <div className="bg-surface rounded-2xl border border-border p-6 shadow-booking">
-                  {submitted ? (
-                    <div className="py-8 text-center space-y-4">
-                      <div className="w-14 h-14 rounded-full bg-green-100 text-green-700 flex items-center justify-center mx-auto shadow-xs">
-                        <CheckCircle2 className="w-8 h-8" />
-                      </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <h4 className="text-xl font-extrabold text-ink">
-                          Detailed BOQ PDF Generated!
-                        </h4>
-                        <p className="text-xs text-ink-muted mt-2 max-w-sm mx-auto leading-relaxed">
-                          Aapke area ({plotArea} sq.ft) aur package ({currentPkg.name}) ka
-                          complete cost estimate <strong>{phone}</strong> par WhatsApp
-                          aur SMS kar diya gaya hai.
-                        </p>
-                      </div>
-
-                      <div className="pt-2 flex flex-col gap-2.5">
-                        <a
-                          href={`https://wa.me/919876543210?text=Hello%20Livitech%20Design,%20I%20just%20calculated%20my%20${plotArea}%20sq.ft%20home%20cost%20in%20${encodeURIComponent(
-                            selectedCity
-                          )}%20with%20${encodeURIComponent(
-                            currentPkg.name
-                          )}%20(${formatINR(estimatedMin)}%20-%20${formatINR(
-                            estimatedMax
-                          )}).%20Please%20share%20the%20detailed%20BOQ%20PDF.`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebd59] text-white font-bold text-xs py-3 px-5 rounded-xl transition-all shadow-sm"
-                        >
-                          <MessageSquare className="w-4 h-4" />
-                          <span>Open WhatsApp Now</span>
-                        </a>
-
-                        <button
-                          type="button"
-                          onClick={() => setSubmitted(false)}
-                          className="w-full py-2.5 rounded-xl bg-surface-muted text-xs font-bold text-ink border border-border hover:bg-brand-light transition-colors cursor-pointer"
-                        >
-                          Calculate Another Estimate
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleEstimateSubmit} className="space-y-3.5">
-                      <div>
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-[11px] font-extrabold uppercase tracking-wider mb-2">
-                          <FileSpreadsheet className="w-3.5 h-3.5" />
-                          <span>Official Engineer BOQ</span>
-                        </div>
-                        <h3 className="text-lg font-extrabold text-ink leading-tight">
-                          Receive Itemized Estimate on WhatsApp
-                        </h3>
-                        <p className="text-xs text-ink-muted mt-1 leading-relaxed">
-                          Enter your contact details to download the complete stage-wise
-                          material breakdown sheet formatted for Bihar home construction.
-                        </p>
-                      </div>
-
-                      {errorMsg && (
-                        <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-700">
-                          {errorMsg}
-                        </div>
-                      )}
-
-                      <div>
-                        <label className="text-xs font-bold uppercase tracking-wider text-ink block mb-1">
+                        <label className="block text-[10px] font-bold uppercase text-[#4A4A46] mb-1">
                           Your Full Name *
                         </label>
                         <input
@@ -500,12 +429,11 @@ export default function CostEstimatorSection() {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           placeholder="e.g. Anand Vardhan"
-                          className="w-full bg-surface-muted border border-border rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all"
+                          className="w-full bg-white border border-[#E6D3C3] rounded-xl px-3 py-2 text-xs font-medium text-[#1A120E] focus:outline-none focus:border-[#8E4F2A]"
                         />
                       </div>
-
                       <div>
-                        <label className="text-xs font-bold uppercase tracking-wider text-ink block mb-1">
+                        <label className="block text-[10px] font-bold uppercase text-[#4A4A46] mb-1">
                           WhatsApp / Phone Number *
                         </label>
                         <input
@@ -514,61 +442,48 @@ export default function CostEstimatorSection() {
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="e.g. 9876543210"
-                          className="w-full bg-surface-muted border border-border rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all"
+                          className="w-full bg-white border border-[#E6D3C3] rounded-xl px-3 py-2 text-xs font-medium text-[#1A120E] focus:outline-none focus:border-[#8E4F2A]"
                         />
                       </div>
+                    </div>
 
-                      {/* Live Summary Bar */}
-                      <div className="bg-surface-muted p-3.5 rounded-xl border border-border text-xs space-y-1 text-ink-muted">
-                        <div className="flex justify-between font-bold text-ink">
-                          <span>Package:</span>
-                          <span className="text-brand">{currentPkg.name}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Area & Location:</span>
-                          <span className="font-semibold text-ink">
-                            {plotArea.toLocaleString()} sq.ft ({selectedCity.split("(")[0].trim()})
-                          </span>
-                        </div>
-                        <div className="flex justify-between pt-1 border-t border-border">
-                          <span className="font-bold text-ink">Est. Cost:</span>
-                          <span className="font-black text-brand text-xs">
-                            {formatINR(estimatedMin)} – {formatINR(estimatedMax)}
-                          </span>
-                        </div>
-                      </div>
+                    <div className="bg-white p-3 rounded-xl border border-[#E6D3C3]/70 text-[11px] text-[#4A4A46] flex flex-wrap items-center justify-between gap-1">
+                      <span>Selected Package: <strong>{currentPkg.name}</strong></span>
+                      <span>Total Area: <strong>{plotArea} sq.ft ({selectedCity.split(" ")[0]})</strong></span>
+                      <span className="w-full text-[#8E4F2A] font-extrabold">Estimated Budget: {formatLakhs(estimatedMin)} – {formatLakhs(estimatedMax)}</span>
+                    </div>
 
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="w-full bg-brand hover:bg-brand-dark disabled:opacity-60 text-white font-extrabold text-sm py-3.5 px-5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all flex items-center justify-center gap-2 cursor-pointer"
-                      >
-                        {submitting ? (
-                          <>
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                            <span>Generating BOQ Report...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Send className="w-4 h-4" />
-                            <span>Get Detailed BOQ PDF (WhatsApp)</span>
-                          </>
-                        )}
-                      </button>
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full bg-[#8E4F2A] hover:bg-[#6D3B1E] disabled:opacity-60 text-white font-bold text-xs py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Generating BOQ PDF...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5" />
+                          <span>Get Detailed BOQ PDF (WhatsApp)</span>
+                        </>
+                      )}
+                    </button>
 
-                      <div className="flex items-center gap-2 text-[10px] text-ink-subtle justify-center pt-1">
-                        <ShieldCheck className="w-3.5 h-3.5 text-brand shrink-0" />
-                        <span>
-                          100% Transparent pricing with zero hidden charges · Direct engineer review
-                        </span>
-                      </div>
-                    </form>
-                  )}
-                </div>
+                    <div className="flex items-center gap-1.5 text-[10px] text-[#4A4A46] justify-center">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#8E4F2A]" />
+                      <span>100% Transparent pricing with zero hidden charges · Direct engineer review</span>
+                    </div>
+                  </form>
+                )}
               </div>
+
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
