@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Building2, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
+import BrandLogo from "@/components/ui/BrandLogo";
 
 export default function Footer() {
   return (
@@ -9,24 +10,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand & Patna HQ Info (2 Columns Wide) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-brand flex items-center justify-center text-white">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-lg font-extrabold tracking-tight block leading-none">
-                  LIVITECH DESIGN
-                </span>
-                <span className="text-xs text-neutral-400">
-                  livitechdesign.in · Architecture & 3D
-                </span>
-              </div>
-            </div>
+            <Link href="/" className="inline-block group" aria-label="Livitect Home">
+              <BrandLogo variant="combo" isTransparent={true} size="lg" />
+            </Link>
 
             <p className="text-sm text-neutral-400 leading-relaxed max-w-sm">
-              Plan. Design. Estimate. Supervise. Architectural 2D/3D design, itemized
-              BOQ cost estimation, commercial planning, and site consultation
-              across Bihar by Livitech Design (livitechdesign.in).
+              More Than Walls. Architectural 2D/3D Vastu design, itemized
+              BOQ cost estimation, turnkey civil engineering, and site supervision
+              across Bihar by Livitect (livitechdesign.in).
             </p>
 
             <div className="pt-2 space-y-2 text-xs text-neutral-300">
@@ -127,7 +118,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-10 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
-          <p>© 2026 Livitech Design (livitechdesign.in). All rights reserved.</p>
+          <p>© 2026 Livitect (livitechdesign.in) · More Than Walls. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms of Service</Link>

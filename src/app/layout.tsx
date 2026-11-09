@@ -8,11 +8,17 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://livitechdesign.in"),
-  title: "Livitech Design | Architecture, 3D Elevation & Planning in Patna, Bihar (livitechdesign.in)",
+  title: "Livitect | Architecture, 3D Elevation & Construction in Patna, Bihar (livitechdesign.in)",
   description:
-    "Plan. Design. Estimate. Supervise. Architectural 2D Vastu naksha, 3D modern elevation design, itemized BOQ cost estimation & site consultation across Bihar by Livitech Design (livitechdesign.in).",
+    "More Than Walls. Architectural 2D Vastu naksha, 3D modern elevation design, itemized BOQ cost estimation & site consultation across Bihar by Livitect (livitechdesign.in).",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/brand/livitect-icon-square.png",
+  },
   keywords: [
-    "Livitech Design",
+    "Livitect",
+    "More Than Walls",
     "livitechdesign.in",
     "Best architect in Patna",
     "3D elevation design Patna",
@@ -22,11 +28,19 @@ export const metadata: Metadata = {
     "Structural engineer consultation Bihar",
   ],
   openGraph: {
-    title: "Livitech Design | Architecture, 3D Elevation & Planning in Patna, Bihar",
+    title: "Livitect | More Than Walls - Architecture & Construction in Bihar",
     description:
-      "Vastu 2D floor plans, photorealistic 3D elevations, and accurate BOQ estimation by licensed Patna architects at livitechdesign.in.",
+      "More Than Walls. Vastu 2D floor plans, photorealistic 3D elevations, and accurate BOQ estimation by licensed architects at livitechdesign.in.",
     url: "https://livitechdesign.in",
-    siteName: "Livitech Design",
+    siteName: "Livitect",
+    images: [
+      {
+        url: "/brand/livitect-logo-terracotta.png",
+        width: 266,
+        height: 203,
+        alt: "Livitect - More Than Walls",
+      },
+    ],
     locale: "en_IN",
     type: "website",
   },

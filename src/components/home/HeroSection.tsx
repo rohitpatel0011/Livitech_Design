@@ -89,8 +89,8 @@ export default function HeroSection() {
 
             <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm">
               From architectural 2D/3D design and BOQ cost estimation to modern exterior
-              elevations, luxury interior design, and site consultation — Livitech Design (livitechdesign.in)
-              helps you plan your building project with complete precision.
+              elevations, luxury interior design, and site consultation — Livitect (livitechdesign.in)
+              helps you build more than walls with complete precision.
             </p>
 
             {/* Primary Hero Buttons */}
