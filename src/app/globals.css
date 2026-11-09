@@ -5,24 +5,23 @@
   --espresso-800: #3A2418;
   --bronze-600: #6B4A2E;
   --sandstone-400: #A88462;
-  --travertine-200: #E6D3C3;
+  --travertine-200: #D5C4AE;
   --slate-600: #4A4A46;
 
-  /* Official Brand Palette from Identity Guide */
-  --brand: #8E4F2A; /* Primary Terracotta */
-  --brand-dark: #3A2418; /* Deep Espresso */
-  --brand-accent: #A88462; /* Architectural Accent */
-  --brand-light: #E6D3C3; /* Warm Sand */
+  --brand: #83461b;
+  --brand-dark: #3A2418;
+  --brand-accent: #A88462;
+  --brand-light: #D5C4AE;
 
   --ink: #1A120E;
   --ink-muted: #4A4A46;
   --ink-subtle: #78756F;
 
-  --surface: #FFFFFF; /* Natural White */
+  --surface: #FFFFFF;
   --surface-muted: #FAF7F2;
   --surface-subtle: #F3EDE4;
 
-  --border: #E6D3C3; /* Warm Sand */
+  --border: #D5C4AE;
   --border-strong: #A88462;
 }
 

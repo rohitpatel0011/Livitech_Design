@@ -94,13 +94,13 @@ export default function TrustAndLocationSection() {
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider">
-              Why Homeowners Choose Livitect
+              Why Homeowners Choose Livitech Design
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-ink mt-2.5">
-              More Than Walls. Engineered with Integrity.
+              Engineered with Integrity. Backed by Data.
             </h2>
             <p className="text-sm sm:text-base text-ink-muted mt-2">
-              Say goodbye to contractor disputes, unverified cement grades, and hidden costs. Livitect (livitechdesign.in) brings corporate architectural and engineering standards to Bihar.
+              Say goodbye to contractor disputes, unverified cement grades, and hidden costs. Livitech Design (livitechdesign.in) brings corporate architectural and engineering standards to Bihar.
             </p>
           </div>
 

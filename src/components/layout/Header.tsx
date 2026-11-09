@@ -2,9 +2,9 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Phone, Menu, X, ArrowUpRight } from "lucide-react";
-import BrandLogo from "@/components/ui/BrandLogo";
 
 interface NavPillItem {
   label: string;
@@ -99,14 +99,25 @@ export default function Header() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Left: Official Brand Logo & Wordmark */}
+          {/* Left: Official Brand Logo Only (Prominent size, no text) */}
           <Link
             href="/"
             onClick={() => setActiveIndex(0)}
-            className="flex items-center group shrink-0"
-            aria-label="Livitect Home"
+            className="flex items-center group shrink-0 transition-transform hover:scale-105"
+            aria-label="Livitect"
           >
-            <BrandLogo variant="combo" isTransparent={isTransparent} size="md" priority />
+            <Image
+              src={
+                isTransparent
+                  ? "/brand/livitech-logo-white.png"
+                  : "/brand/livitech-logo-dark.png"
+              }
+              alt="Livitect - More Than Walls"
+              width={160}
+              height={125}
+              priority
+              className="h-12 sm:h-14 lg:h-16 w-auto object-contain drop-shadow-xs transition-opacity duration-300"
+            />
           </Link>
 
           {/* Center: Floating Pill Navigation with Sliding Bottom Indicator */}

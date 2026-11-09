@@ -8,17 +8,11 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://livitechdesign.in"),
-  title: "Livitect | Architecture, 3D Elevation & Construction in Patna, Bihar (livitechdesign.in)",
+  title: "Livitech Design | Architecture, 3D Elevation & Planning in Patna, Bihar (livitechdesign.in)",
   description:
-    "More Than Walls. Architectural 2D Vastu naksha, 3D modern elevation design, itemized BOQ cost estimation & site consultation across Bihar by Livitect (livitechdesign.in).",
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/brand/livitect-icon-square.png",
-  },
+    "Plan. Design. Estimate. Supervise. Architectural 2D Vastu naksha, 3D modern elevation design, itemized BOQ cost estimation & site consultation across Bihar by Livitech Design (livitechdesign.in).",
   keywords: [
-    "Livitect",
-    "More Than Walls",
+    "Livitech Design",
     "livitechdesign.in",
     "Best architect in Patna",
     "3D elevation design Patna",
@@ -28,21 +22,17 @@ export const metadata: Metadata = {
     "Structural engineer consultation Bihar",
   ],
   openGraph: {
-    title: "Livitect | More Than Walls - Architecture & Construction in Bihar",
+    title: "Livitech Design | Architecture, 3D Elevation & Planning in Patna, Bihar",
     description:
-      "More Than Walls. Vastu 2D floor plans, photorealistic 3D elevations, and accurate BOQ estimation by licensed architects at livitechdesign.in.",
+      "Vastu 2D floor plans, photorealistic 3D elevations, and accurate BOQ estimation by licensed Patna architects at livitechdesign.in.",
     url: "https://livitechdesign.in",
-    siteName: "Livitect",
-    images: [
-      {
-        url: "/brand/livitect-logo-terracotta.png",
-        width: 266,
-        height: 203,
-        alt: "Livitect - More Than Walls",
-      },
-    ],
+    siteName: "Livitech Design",
     locale: "en_IN",
     type: "website",
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
