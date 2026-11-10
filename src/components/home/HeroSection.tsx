@@ -12,12 +12,40 @@ import {
   CheckCircle2,
   Layers,
   Ruler,
+  Home,
+  Building2,
+  Wrench,
+  Paintbrush,
+  DraftingCompass,
+  HardHat,
 } from "lucide-react";
 import {
   HERO_VISUAL_SLIDES,
   CORE_SERVICES,
   BIHAR_CITIES,
 } from "@/data/livitectData";
+
+function renderServiceIcon(id: string, active: boolean) {
+  const iconClass = `w-4 h-4 transition-colors ${
+    active ? "text-white" : "text-[#8E4F2A] group-hover:text-[#6D3B1E]"
+  }`;
+  switch (id) {
+    case "residential-construction":
+      return <Home className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    case "commercial-construction":
+      return <Building2 className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    case "maintenance-service":
+      return <Wrench className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    case "interior-design":
+      return <Paintbrush className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    case "architectural-services":
+      return <DraftingCompass className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    case "contractor-services":
+      return <HardHat className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+    default:
+      return <Layers className={iconClass} strokeWidth={2.2} aria-hidden="true" />;
+  }
+}
 
 export default function HeroSection() {
   const router = useRouter();
@@ -262,7 +290,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* 6 Interactive Visual Service Pills */}
+          {/* 6 Interactive Service Pills with Brand SVG Icons */}
           <div className="flex items-center gap-2.5 overflow-x-auto pb-3 no-scrollbar">
             {CORE_SERVICES.map((srv) => {
               const active = selectedService === srv.id;
@@ -271,20 +299,20 @@ export default function HeroSection() {
                   key={srv.id}
                   type="button"
                   onClick={() => setSelectedService(srv.id)}
-                  className={`group flex items-center gap-2.5 px-3.5 py-2 rounded-xl border text-xs sm:text-sm font-semibold shrink-0 transition-all cursor-pointer ${
+                  className={`group flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer ${
                     active
-                      ? "bg-brand text-white border-brand shadow-sm"
-                      : "bg-surface-muted/70 text-ink hover:border-brand/40 border-border"
+                      ? "bg-[#8E4F2A] text-white border-[#8E4F2A] shadow-md scale-102"
+                      : "bg-[#F9F6F0] text-[#1A120E] hover:bg-white hover:border-[#8E4F2A]/60 border-[#E6D3C3]"
                   }`}
                 >
-                  <div className="relative w-6 h-6 rounded-md overflow-hidden shrink-0 border border-white/20">
-                    <Image
-                      src={srv.images[0]}
-                      alt={srv.title}
-                      fill
-                      sizes="24px"
-                      className="object-cover"
-                    />
+                  <div
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      active
+                        ? "bg-white/20 text-white"
+                        : "bg-[#E6D3C3]/50 group-hover:bg-[#E6D3C3]/80 text-[#8E4F2A]"
+                    }`}
+                  >
+                    {renderServiceIcon(srv.id, active)}
                   </div>
                   <span>{srv.title}</span>
                 </button>
