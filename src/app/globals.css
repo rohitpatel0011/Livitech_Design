@@ -8,7 +8,7 @@
   --travertine-200: #D5C4AE;
   --slate-600: #4A4A46;
 
-  --brand: #e66400;
+  --brand: #6B4A2E;
   --brand-dark: #3A2418;
   --brand-accent: #A88462;
   --brand-light: #D5C4AE;
@@ -64,7 +64,6 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
