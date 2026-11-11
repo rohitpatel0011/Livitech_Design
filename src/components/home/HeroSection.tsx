@@ -19,59 +19,6 @@ import {
   BIHAR_CITIES,
 } from "@/data/livitectData";
 
-interface HeroStageContent {
-  badge: string;
-  headingLine1: string;
-  headingLine2: string;
-  description: string;
-  primaryCtaText: string;
-  primaryCtaHref: string;
-  trustPills: string[];
-}
-
-const HERO_STAGE_DETAILS: HeroStageContent[] = [
-  {
-    badge: "STAGE 01 · ARCHITECTURE & 3D DESIGN",
-    headingLine1: "Plan your dream home.",
-    headingLine2: "See it in 3D first.",
-    description:
-      "Get Vastu-compliant 2D floor plans and photorealistic 3D front elevations before laying a single brick on your plot.",
-    primaryCtaText: "Book 2D/3D Design",
-    primaryCtaHref: "#cost-estimator",
-    trustPills: ["2D Vastu Floor Plans", "3D Front Elevations", "Patna & Bihar Sites"],
-  },
-  {
-    badge: "STAGE 02 · STRUCTURAL ENGINEERING & BOQ",
-    headingLine1: "Strong foundations.",
-    headingLine2: "Zero budget surprises.",
-    description:
-      "Build safely with earthquake-resistant RCC column-beam drawings, exact TMT steel details, and a 100% transparent material cost estimate (BOQ).",
-    primaryCtaText: "Get Structural & BOQ Plan",
-    primaryCtaHref: "#cost-estimator",
-    trustPills: ["Fe-550D TMT Details", "Itemized BOQ Estimate", "Certified Civil Audits"],
-  },
-  {
-    badge: "STAGE 03 · COMMERCIAL & INSTITUTIONAL",
-    headingLine1: "Smart spaces built",
-    headingLine2: "for growing businesses.",
-    description:
-      "High-ROI architectural layouts, modern glass facades, basement parking, and municipal bye-law compliance for complexes, hospitals, and showrooms.",
-    primaryCtaText: "Discuss Commercial Project",
-    primaryCtaHref: "/services/commercial-construction",
-    trustPills: ["Municipal Bye-Law Compliant", "Basement Parking Norms", "Modern Glass Facades"],
-  },
-  {
-    badge: "STAGE 04 · TURNKEY INTERIOR & WALKTHROUGH",
-    headingLine1: "Step inside your rooms",
-    headingLine2: "before they are built.",
-    description:
-      "Experience 360° 3D interior walkthroughs, bespoke modular kitchens, custom wardrobes, and designer false ceiling plans tailored to your lifestyle.",
-    primaryCtaText: "Explore Interior Packages",
-    primaryCtaHref: "/services/interior-design",
-    trustPills: ["360° 3D Walkthrough", "Bespoke Modular Woodwork", "Turnkey Handover"],
-  },
-];
-
 export default function HeroSection() {
   const router = useRouter();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -88,7 +35,6 @@ export default function HeroSection() {
   }, []);
 
   const currentSlide = HERO_VISUAL_SLIDES[activeSlide];
-  const currentContent = HERO_STAGE_DETAILS[activeSlide];
 
   const handleBookingStart = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,53 +82,51 @@ export default function HeroSection() {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* LEFT COLUMN (5 Cols): Dynamic Synchronized Stage Content */}
-          <div className="lg:col-span-5 min-h-[380px] flex flex-col justify-center">
-            <div key={activeSlide} className="animate-hero-fade space-y-6">
-              {/* Dynamic Top Badge / Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#8E4F2A] animate-pulse" />
-                <span>{currentContent.badge}</span>
+          {/* LEFT COLUMN (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
+              Build better.{" "}
+              <span className="text-brand-accent block mt-1">
+                Build with confidence.
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm">
+              From architectural 2D/3D design and BOQ cost estimation to modern exterior
+              elevations, luxury interior design, and site consultation — Livitech Design (livitechdesign.in)
+              helps you plan your building project with complete precision.
+            </p>
+
+            {/* Primary Hero Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+              <Link
+                href="#cost-estimator"
+                className="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer"
+              >
+                <span>Start Your Project</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
+              >
+                <span>Explore Services</span>
+              </Link>
+            </div>
+
+            {/* Quick Trust Pills */}
+            <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" />
+                <span>2D/3D Vastu Plans</span>
               </div>
-
-              {/* Dynamic Main Heading */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
-                {currentContent.headingLine1}{" "}
-                <span className="text-[#E6D3C3] block mt-1">
-                  {currentContent.headingLine2}
-                </span>
-              </h1>
-
-              {/* Dynamic Short Description */}
-              <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm min-h-[56px]">
-                {currentContent.description}
-              </p>
-
-              {/* Dynamic Primary Button & Static Secondary Button */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-1">
-                <Link
-                  href={currentContent.primaryCtaHref}
-                  className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer"
-                >
-                  <span>{currentContent.primaryCtaText}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="#services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
-                >
-                  <span>Explore All Services</span>
-                </Link>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" />
+                <span>Transparent BOQ Cost</span>
               </div>
-
-              {/* Dynamic Stage Trust Pills */}
-              <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90">
-                {currentContent.trustPills.map((pill) => (
-                  <div key={pill} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#E6D3C3] shrink-0" />
-                    <span>{pill}</span>
-                  </div>
-                ))}
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" />
+                <span>Patna HQ & Site Support</span>
               </div>
             </div>
           </div>
