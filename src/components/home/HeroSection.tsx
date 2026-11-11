@@ -39,15 +39,15 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
     headingLine1: "Engineered for your safety.",
     headingLine2: "Built to endure for generations.",
     description:
-      "Earthquake-resistant RCC column-beam structural drawings, certified TMT steel placement, and itemized material BOQ cost estimation for safety.",
+      "Earthquake-resistant RCC structural drawings, certified steel placement, and itemized material BOQ cost estimation before you start building.",
     primaryCtaText: "Book Structural Design",
     primaryCtaHref: "#cost-estimator",
   },
   {
-    headingLine1: "Build smart commercial spaces.",
-    headingLine2: "Designed for maximum daily footfall.",
+    headingLine1: "Build your commercial complex.",
+    headingLine2: "Modern shops and retail offices.",
     description:
-      "Modern glass facades, municipal building bye-law approval, basement parking design, and high-ROI architectural planning for retail complexes.",
+      "Approved building maps, modern glass showroom elevations, basement parking, and turnkey commercial complex construction across all Bihar.",
     primaryCtaText: "Book Commercial Plan",
     primaryCtaHref: "/services/commercial-construction",
   },
@@ -55,7 +55,7 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
     headingLine1: "Step inside modern rooms.",
     headingLine2: "Before they are ever built.",
     description:
-      "Photorealistic 3D virtual walkthroughs, custom modular kitchens, luxury wardrobes, false ceiling plans, and designer ambient lighting execution.",
+      "Photorealistic 3D interior walkthroughs, custom modular kitchens, luxury wardrobes, false ceiling plans, and turnkey home finishing execution.",
     primaryCtaText: "Book Interior Design",
     primaryCtaHref: "/services/interior-design",
   },
@@ -124,9 +124,9 @@ export default function HeroSection() {
       {/* Main Container */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          {/* LEFT COLUMN (5 Cols): Clean Top-Aligned Content (No Bandage, No Pills, Zero Shift) */}
-          <div className="lg:col-span-5 flex flex-col justify-start pt-1 sm:pt-2 lg:pt-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-stretch">
+          {/* LEFT COLUMN (5 Cols): Clean Top-Aligned Content & Bottom-Parallel Buttons */}
+          <div className="lg:col-span-5 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-3">
             {/* 1. Dynamic Text Block (Fixed Height Container, only text fades in smoothly) */}
             <div className="h-[185px] sm:h-[195px] lg:h-[215px] flex flex-col justify-start">
               <div key={activeSlide} className="animate-hero-fade space-y-3 sm:space-y-4">
@@ -145,8 +145,8 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* 2. Action Buttons (Position 100% Fixed, Never Jumps or Moves) */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-4">
+            {/* 2. Action Buttons (Parallel to the bottom of the right-side card on desktop) */}
+            <div className="pt-6 lg:pt-0 mt-6 lg:mt-auto flex flex-wrap items-center gap-3.5 pb-1">
               <Link
                 href={stageContent.primaryCtaHref}
                 className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[230px]"
@@ -158,7 +158,7 @@ export default function HeroSection() {
               </Link>
               <Link
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm min-w-[170px]"
               >
                 <span>Explore Services</span>
               </Link>
