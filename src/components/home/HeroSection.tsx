@@ -42,31 +42,31 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
   },
   {
     badge: "STAGE 02 · STRUCTURAL DESIGN & BOQ",
-    headingLine1: "Engineered for safety.",
-    headingLine2: "Built to last generations.",
+    headingLine1: "Engineered for your safety.",
+    headingLine2: "Built to endure for generations.",
     description:
-      "Earthquake-resistant RCC column-beam framing, certified TMT steel spacing, and itemized BOQ material cost estimation.",
-    primaryCtaText: "Get Structural & BOQ Plan",
+      "Earthquake-resistant RCC column-beam structural drawings, certified TMT steel placement, and itemized material BOQ cost estimation for safety.",
+    primaryCtaText: "Book Structural Design",
     primaryCtaHref: "#cost-estimator",
     trustPills: ["Fe-550D TMT Standards", "Transparent BOQ Cost", "Licensed Civil Audits"],
   },
   {
     badge: "STAGE 03 · COMMERCIAL & INSTITUTIONAL",
-    headingLine1: "Smart commercial spaces.",
-    headingLine2: "Engineered for high footfall.",
+    headingLine1: "Build smart commercial spaces.",
+    headingLine2: "Designed for maximum daily footfall.",
     description:
-      "Modern glass facades, municipal bye-law compliance, basement parking, and turnkey construction for complexes & showrooms.",
-    primaryCtaText: "Plan Commercial Project",
+      "Modern glass facades, municipal building bye-law approval, basement parking design, and high-ROI architectural planning for retail complexes.",
+    primaryCtaText: "Book Commercial Plan",
     primaryCtaHref: "/services/commercial-construction",
     trustPills: ["Municipal Map Approval", "Basement Parking Norms", "High-ROI Architecture"],
   },
   {
     badge: "STAGE 04 · TURNKEY INTERIOR DESIGN",
-    headingLine1: "Step inside your rooms.",
-    headingLine2: "Before they are built.",
+    headingLine1: "Step inside modern rooms.",
+    headingLine2: "Before they are ever built.",
     description:
-      "Experience photorealistic 3D interior walkthroughs, premium modular kitchens, custom wardrobes, and ambient profile lighting.",
-    primaryCtaText: "Explore Interior Packages",
+      "Photorealistic 3D virtual walkthroughs, custom modular kitchens, luxury wardrobes, false ceiling plans, and designer ambient lighting execution.",
+    primaryCtaText: "Book Interior Design",
     primaryCtaHref: "/services/interior-design",
     trustPills: ["3D Virtual Walkthrough", "Bespoke Modular Wood", "Turnkey Key Handover"],
   },
@@ -136,54 +136,59 @@ export default function HeroSection() {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* LEFT COLUMN (5 Cols): Dynamic Synchronized Stage Content (Zero Layout Shift) */}
-          <div className="lg:col-span-5 min-h-[420px] flex flex-col justify-center">
-            <div key={activeSlide} className="animate-hero-fade space-y-6">
-              {/* Dynamic Top Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#8E4F2A] animate-pulse" />
-                <span>{stageContent.badge}</span>
-              </div>
+          {/* LEFT COLUMN (5 Cols): Rock-Solid Fixed Layout (Zero Layout Shift) */}
+          <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
+            {/* 1. Dynamic Text Block (Fixed Height Container, only text fades in smoothly) */}
+            <div className="h-[235px] sm:h-[245px] lg:h-[265px] flex flex-col justify-start">
+              <div key={activeSlide} className="animate-hero-fade space-y-3 sm:space-y-4">
+                {/* Dynamic Top Eyebrow Badge */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider shadow-sm w-fit">
+                  <span className="w-2 h-2 rounded-full bg-[#8E4F2A] animate-pulse" />
+                  <span>{stageContent.badge}</span>
+                </div>
 
-              {/* Dynamic Main Heading (Fixed min-height to prevent any shift) */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md min-h-[96px] sm:min-h-[116px] lg:min-h-[140px] flex flex-col justify-end">
-                <span>{stageContent.headingLine1}</span>
-                <span className="text-[#E6D3C3] block mt-1">
-                  {stageContent.headingLine2}
+                {/* Dynamic Main Heading (Exact 9 words: 4 words + 5 words, 2 lines) */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
+                  <span>{stageContent.headingLine1}</span>
+                  <span className="text-[#E6D3C3] block mt-1">
+                    {stageContent.headingLine2}
+                  </span>
+                </h1>
+
+                {/* Dynamic Short Description (Exact 17 words across all 4 stages) */}
+                <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm">
+                  {stageContent.description}
+                </p>
+              </div>
+            </div>
+
+            {/* 2. Action Buttons (Position 100% Fixed, Never Jumps or Moves) */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+              <Link
+                href={stageContent.primaryCtaHref}
+                className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[230px]"
+              >
+                <span key={activeSlide} className="animate-hero-fade">
+                  {stageContent.primaryCtaText}
                 </span>
-              </h1>
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              </Link>
+              <Link
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
+              >
+                <span>Explore Services</span>
+              </Link>
+            </div>
 
-              {/* Dynamic Short Description (Calibrated min-height) */}
-              <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm min-h-[56px]">
-                {stageContent.description}
-              </p>
-
-              {/* Action Buttons (Fixed layout & size) */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-1">
-                <Link
-                  href={stageContent.primaryCtaHref}
-                  className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[210px]"
-                >
-                  <span>{stageContent.primaryCtaText}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="#services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
-                >
-                  <span>Explore Services</span>
-                </Link>
-              </div>
-
-              {/* Dynamic Trust / Specification Pills */}
-              <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90">
-                {stageContent.trustPills.map((pill) => (
-                  <div key={pill} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#E6D3C3] shrink-0" />
-                    <span>{pill}</span>
-                  </div>
-                ))}
-              </div>
+            {/* 3. Trust Pills (Fixed Height Container) */}
+            <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90 min-h-[48px]">
+              {stageContent.trustPills.map((pill) => (
+                <div key={pill} className="flex items-center gap-1.5 animate-hero-fade">
+                  <CheckCircle2 className="w-4 h-4 text-[#E6D3C3] shrink-0" />
+                  <span className="truncate">{pill}</span>
+                </div>
+              ))}
             </div>
           </div>
 
