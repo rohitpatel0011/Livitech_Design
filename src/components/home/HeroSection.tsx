@@ -26,49 +26,49 @@ interface HeroStageContent {
   description: string;
   primaryCtaText: string;
   primaryCtaHref: string;
-  trustPills: string[];
+  trustPills: [string, string, string];
 }
 
-const HERO_STAGE_DETAILS: HeroStageContent[] = [
+const HERO_STAGE_CONTENT: HeroStageContent[] = [
   {
     badge: "STAGE 01 · ARCHITECTURE & 3D DESIGN",
     headingLine1: "Plan your dream home.",
     headingLine2: "See it in 3D first.",
     description:
-      "Get Vastu-compliant 2D floor plans, realistic 3D front elevations, and complete CAD blueprints before starting construction on your plot.",
-    primaryCtaText: "Start 2D/3D Design",
+      "Vastu-compliant 2D floor plans and photorealistic 3D front elevations before laying a single brick on your plot.",
+    primaryCtaText: "Book 2D/3D Design",
     primaryCtaHref: "#cost-estimator",
     trustPills: ["2D Vastu Floor Plans", "3D Front Elevations", "Patna & Bihar Sites"],
   },
   {
-    badge: "STAGE 02 · RCC STRUCTURAL & SUPERVISION",
-    headingLine1: "Strong foundations.",
-    headingLine2: "Zero structural risk.",
+    badge: "STAGE 02 · STRUCTURAL DESIGN & BOQ",
+    headingLine1: "Engineered for safety.",
+    headingLine2: "Built to last generations.",
     description:
-      "Build safely with earthquake-resistant RCC drawings, certified steel rebar detailing, and routine on-site civil engineer audits.",
-    primaryCtaText: "Get Structural Plan",
+      "Earthquake-resistant RCC column-beam framing, certified TMT steel spacing, and itemized BOQ material cost estimation.",
+    primaryCtaText: "Get Structural & BOQ Plan",
     primaryCtaHref: "#cost-estimator",
-    trustPills: ["Fe-550D TMT Details", "Itemized BOQ Estimate", "Certified Civil Audits"],
+    trustPills: ["Fe-550D TMT Standards", "Transparent BOQ Cost", "Licensed Civil Audits"],
   },
   {
     badge: "STAGE 03 · COMMERCIAL & INSTITUTIONAL",
-    headingLine1: "Modern commercial spaces.",
-    headingLine2: "Built for high returns.",
+    headingLine1: "Smart commercial spaces.",
+    headingLine2: "Engineered for high footfall.",
     description:
-      "High-ROI architectural layouts, modern glass facades, basement parking plans, and municipal bye-law compliance for complexes and showrooms.",
+      "Modern glass facades, municipal bye-law compliance, basement parking, and turnkey construction for complexes & showrooms.",
     primaryCtaText: "Plan Commercial Project",
     primaryCtaHref: "/services/commercial-construction",
-    trustPills: ["Municipal Bye-Law Compliant", "Basement Parking Norms", "Modern Glass Facades"],
+    trustPills: ["Municipal Map Approval", "Basement Parking Norms", "High-ROI Architecture"],
   },
   {
-    badge: "STAGE 04 · TURNKEY LUXURY INTERIOR",
+    badge: "STAGE 04 · TURNKEY INTERIOR DESIGN",
     headingLine1: "Step inside your rooms.",
     headingLine2: "Before they are built.",
     description:
-      "Experience 360° 3D interior walkthroughs, bespoke modular kitchens, custom wardrobes, and designer false ceiling plans tailored to your lifestyle.",
+      "Experience photorealistic 3D interior walkthroughs, premium modular kitchens, custom wardrobes, and ambient profile lighting.",
     primaryCtaText: "Explore Interior Packages",
     primaryCtaHref: "/services/interior-design",
-    trustPills: ["360° 3D Walkthrough", "Bespoke Modular Woodwork", "Turnkey Handover"],
+    trustPills: ["3D Virtual Walkthrough", "Bespoke Modular Wood", "Turnkey Key Handover"],
   },
 ];
 
@@ -88,7 +88,7 @@ export default function HeroSection() {
   }, []);
 
   const currentSlide = HERO_VISUAL_SLIDES[activeSlide];
-  const currentContent = HERO_STAGE_DETAILS[activeSlide];
+  const stageContent = HERO_STAGE_CONTENT[activeSlide] || HERO_STAGE_CONTENT[0];
 
   const handleBookingStart = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,48 +136,48 @@ export default function HeroSection() {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* LEFT COLUMN (5 Cols): Dynamic Synchronized Stage Content */}
-          <div className="lg:col-span-5 min-h-[380px] flex flex-col justify-center">
+          {/* LEFT COLUMN (5 Cols): Dynamic Synchronized Stage Content (Zero Layout Shift) */}
+          <div className="lg:col-span-5 min-h-[420px] flex flex-col justify-center">
             <div key={activeSlide} className="animate-hero-fade space-y-6">
-              {/* Dynamic Top Badge / Eyebrow */}
+              {/* Dynamic Top Eyebrow Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#8E4F2A] animate-pulse" />
-                <span>{currentContent.badge}</span>
+                <span>{stageContent.badge}</span>
               </div>
 
-              {/* Dynamic Main Heading */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
-                {currentContent.headingLine1}{" "}
+              {/* Dynamic Main Heading (Fixed min-height to prevent any shift) */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md min-h-[96px] sm:min-h-[116px] lg:min-h-[140px] flex flex-col justify-end">
+                <span>{stageContent.headingLine1}</span>
                 <span className="text-[#E6D3C3] block mt-1">
-                  {currentContent.headingLine2}
+                  {stageContent.headingLine2}
                 </span>
               </h1>
 
-              {/* Dynamic Short Description */}
+              {/* Dynamic Short Description (Calibrated min-height) */}
               <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm min-h-[56px]">
-                {currentContent.description}
+                {stageContent.description}
               </p>
 
-              {/* Dynamic Primary Button & Static Secondary Button */}
+              {/* Action Buttons (Fixed layout & size) */}
               <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 <Link
-                  href={currentContent.primaryCtaHref}
-                  className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer"
+                  href={stageContent.primaryCtaHref}
+                  className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[210px]"
                 >
-                  <span>{currentContent.primaryCtaText}</span>
+                  <span>{stageContent.primaryCtaText}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="#services"
                   className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm"
                 >
-                  <span>Explore All Services</span>
+                  <span>Explore Services</span>
                 </Link>
               </div>
 
-              {/* Dynamic Stage Trust Pills */}
+              {/* Dynamic Trust / Specification Pills */}
               <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90">
-                {currentContent.trustPills.map((pill) => (
+                {stageContent.trustPills.map((pill) => (
                   <div key={pill} className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-[#E6D3C3] shrink-0" />
                     <span>{pill}</span>
