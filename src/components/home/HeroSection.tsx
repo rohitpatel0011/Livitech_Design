@@ -9,7 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   MapPin,
-  CheckCircle2,
   Layers,
   Ruler,
 } from "lucide-react";
@@ -20,55 +19,45 @@ import {
 } from "@/data/livitectData";
 
 interface HeroStageContent {
-  badge: string;
   headingLine1: string;
   headingLine2: string;
   description: string;
   primaryCtaText: string;
   primaryCtaHref: string;
-  trustPills: [string, string, string];
 }
 
 const HERO_STAGE_CONTENT: HeroStageContent[] = [
   {
-    badge: "STAGE 01 · ARCHITECTURE & 3D DESIGN",
     headingLine1: "Plan your dream home.",
     headingLine2: "See it in 3D first.",
     description:
       "Vastu-compliant 2D floor plans and photorealistic 3D front elevations before laying a single brick on your plot.",
     primaryCtaText: "Book 2D/3D Design",
     primaryCtaHref: "#cost-estimator",
-    trustPills: ["2D Vastu Floor Plans", "3D Front Elevations", "Patna & Bihar Sites"],
   },
   {
-    badge: "STAGE 02 · STRUCTURAL DESIGN & BOQ",
     headingLine1: "Engineered for your safety.",
     headingLine2: "Built to endure for generations.",
     description:
       "Earthquake-resistant RCC column-beam structural drawings, certified TMT steel placement, and itemized material BOQ cost estimation for safety.",
     primaryCtaText: "Book Structural Design",
     primaryCtaHref: "#cost-estimator",
-    trustPills: ["Fe-550D TMT Standards", "Transparent BOQ Cost", "Licensed Civil Audits"],
   },
   {
-    badge: "STAGE 03 · COMMERCIAL & INSTITUTIONAL",
     headingLine1: "Build smart commercial spaces.",
     headingLine2: "Designed for maximum daily footfall.",
     description:
       "Modern glass facades, municipal building bye-law approval, basement parking design, and high-ROI architectural planning for retail complexes.",
     primaryCtaText: "Book Commercial Plan",
     primaryCtaHref: "/services/commercial-construction",
-    trustPills: ["Municipal Map Approval", "Basement Parking Norms", "High-ROI Architecture"],
   },
   {
-    badge: "STAGE 04 · TURNKEY INTERIOR DESIGN",
     headingLine1: "Step inside modern rooms.",
     headingLine2: "Before they are ever built.",
     description:
       "Photorealistic 3D virtual walkthroughs, custom modular kitchens, luxury wardrobes, false ceiling plans, and designer ambient lighting execution.",
     primaryCtaText: "Book Interior Design",
     primaryCtaHref: "/services/interior-design",
-    trustPills: ["3D Virtual Walkthrough", "Bespoke Modular Wood", "Turnkey Key Handover"],
   },
 ];
 
@@ -135,19 +124,13 @@ export default function HeroSection() {
       {/* Main Container */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* LEFT COLUMN (5 Cols): Rock-Solid Fixed Layout (Zero Layout Shift) */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          {/* LEFT COLUMN (5 Cols): Clean Top-Aligned Content (No Bandage, No Pills, Zero Shift) */}
+          <div className="lg:col-span-5 flex flex-col justify-start pt-1 sm:pt-2 lg:pt-3">
             {/* 1. Dynamic Text Block (Fixed Height Container, only text fades in smoothly) */}
-            <div className="h-[235px] sm:h-[245px] lg:h-[265px] flex flex-col justify-start">
+            <div className="h-[185px] sm:h-[195px] lg:h-[215px] flex flex-col justify-start">
               <div key={activeSlide} className="animate-hero-fade space-y-3 sm:space-y-4">
-                {/* Dynamic Top Eyebrow Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider shadow-sm w-fit">
-                  <span className="w-2 h-2 rounded-full bg-[#8E4F2A] animate-pulse" />
-                  <span>{stageContent.badge}</span>
-                </div>
-
-                {/* Dynamic Main Heading (Exact 9 words: 4 words + 5 words, 2 lines) */}
+                {/* Main Heading (Exact 9 words: 4 words + 5 words, 2 lines) */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
                   <span>{stageContent.headingLine1}</span>
                   <span className="text-[#E6D3C3] block mt-1">
@@ -155,7 +138,7 @@ export default function HeroSection() {
                   </span>
                 </h1>
 
-                {/* Dynamic Short Description (Exact 17 words across all 4 stages) */}
+                {/* Description (Exact 17 words across all 4 stages) */}
                 <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm">
                   {stageContent.description}
                 </p>
@@ -163,7 +146,7 @@ export default function HeroSection() {
             </div>
 
             {/* 2. Action Buttons (Position 100% Fixed, Never Jumps or Moves) */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+            <div className="flex flex-wrap items-center gap-3.5 pt-4">
               <Link
                 href={stageContent.primaryCtaHref}
                 className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[230px]"
@@ -179,16 +162,6 @@ export default function HeroSection() {
               >
                 <span>Explore Services</span>
               </Link>
-            </div>
-
-            {/* 3. Trust Pills (Fixed Height Container) */}
-            <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-semibold text-white/90 min-h-[48px]">
-              {stageContent.trustPills.map((pill) => (
-                <div key={pill} className="flex items-center gap-1.5 animate-hero-fade">
-                  <CheckCircle2 className="w-4 h-4 text-[#E6D3C3] shrink-0" />
-                  <span className="truncate">{pill}</span>
-                </div>
-              ))}
             </div>
           </div>
 
