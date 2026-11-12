@@ -28,10 +28,10 @@ interface HeroStageContent {
 
 const HERO_STAGE_CONTENT: HeroStageContent[] = [
   {
-    headingLine1: "Plan your dream home.",
-    headingLine2: "See it in 3D first.",
+    headingLine1: "Design your dream home.",
+    headingLine2: "See every detail in 3D.",
     description:
-      "Vastu-compliant 2D floor plans and photorealistic 3D front elevations before laying a single brick on your plot.",
+      "Vastu-compliant 2D floor plans, smart room layouts, and photorealistic 3D front elevations before laying a single brick.",
     primaryCtaText: "Book 2D/3D Design",
     primaryCtaHref: "#cost-estimator",
   },
@@ -40,15 +40,15 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
     headingLine2: "Built to endure for generations.",
     description:
       "Earthquake-resistant RCC structural drawings, certified steel placement, and itemized material BOQ cost estimation before you start building.",
-    primaryCtaText: "Book Structural Design",
+    primaryCtaText: "Get Structural & BOQ Plan",
     primaryCtaHref: "#cost-estimator",
   },
   {
-    headingLine1: "Build your commercial complex.",
-    headingLine2: "Modern shops and retail offices.",
+    headingLine1: "Build modern commercial spaces.",
+    headingLine2: "Designed for growing businesses today.",
     description:
-      "Approved building maps, modern glass showroom elevations, basement parking, and turnkey commercial complex construction across all Bihar.",
-    primaryCtaText: "Book Commercial Plan",
+      "High-return commercial floor layouts, modern glass elevations, basement parking plans, and complete municipal compliance for complexes and showrooms.",
+    primaryCtaText: "Explore Commercial Build",
     primaryCtaHref: "/services/commercial-construction",
   },
   {
@@ -149,7 +149,7 @@ export default function HeroSection() {
             <div className="pt-6 lg:pt-0 mt-6 lg:mt-auto flex flex-wrap items-center gap-3.5 pb-1">
               <Link
                 href={stageContent.primaryCtaHref}
-                className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-7 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[230px]"
+                className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[260px] whitespace-nowrap"
               >
                 <span key={activeSlide} className="animate-hero-fade">
                   {stageContent.primaryCtaText}
