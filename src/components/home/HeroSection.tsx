@@ -61,13 +61,6 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
   },
 ];
 
-const STAGE_NAMES = [
-  "Architecture & 3D",
-  "Structural Design",
-  "Commercial Planning",
-  "Turnkey Interior",
-];
-
 export default function HeroSection() {
   const router = useRouter();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -194,64 +187,49 @@ export default function HeroSection() {
                   className="object-cover transition-all duration-700 scale-100 group-hover:scale-105"
                 />
                 {/* Softened gradient overlay inside card */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                {/* Combined Floating Blueprint / Working Detail & 4-Stage Switcher PIP Card */}
-                <div className="hidden sm:block absolute bottom-20 right-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl border border-border shadow-2xl max-w-sm z-20">
-                  {/* 4 Interactive Stage Switcher Buttons */}
-                  <div className="grid grid-cols-4 gap-1 p-1 bg-[#F9F6F0] rounded-xl border border-border/60 mb-2.5">
-                    {HERO_VISUAL_SLIDES.map((slide, idx) => {
-                      const isActive = idx === activeSlide;
-                      return (
-                        <button
-                          key={slide.id}
-                          type="button"
-                          onClick={() => setActiveSlide(idx)}
-                          className={`py-1.5 px-1 rounded-lg text-[11px] font-bold transition-all text-center cursor-pointer ${
-                            isActive
-                              ? "bg-[#8E4F2A] text-white shadow-xs"
-                              : "text-ink-muted hover:text-ink hover:bg-white"
-                          }`}
-                        >
-                          Stage 0{idx + 1}
-                        </button>
-                      );
-                    })}
+                {/* Top Left & Right Stage Badges */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
+                  {/* <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                    {currentSlide.stageTag}
+                  </span> */}
+                  {/* <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-brand-light" />
+                    {currentSlide.location}
+                  </span> */}
+                  <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                    {currentSlide.stageTag}
+                  </span>
+                </div>
+
+                {/* Floating Blueprint / Working Detail Picture-in-Picture Card */}
+                <div className="hidden sm:flex absolute bottom-24 right-4 bg-white/95 backdrop-blur-md p-2.5 rounded-xl border border-border shadow-lg items-center gap-3 max-w-xs z-20">
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-border">
+                    <Image
+                      src={currentSlide.blueprintThumb}
+                      alt="Stage technical preview"
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
                   </div>
-
-                  {/* Active Stage Technical Preview & Details */}
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-border shadow-xs bg-[#1A120E]">
-                      <Image
-                        key={activeSlide}
-                        src={currentSlide.blueprintThumb}
-                        alt="Stage technical preview"
-                        fill
-                        sizes="64px"
-                        className="object-cover animate-hero-fade"
-                      />
-                    </div>
-                    <div className="text-left min-w-0 flex-1">
-                      {/* Replaces "Live Working Spec" with Active Stage Name */}
-                      <span className="text-[11px] font-black uppercase tracking-wider text-[#8E4F2A] block truncate">
-                        Stage 0{activeSlide + 1} · {STAGE_NAMES[activeSlide]}
-                      </span>
-                      <p className="text-xs font-bold text-ink line-clamp-1 mt-0.5">
-                        {currentSlide.metrics}
-                      </p>
-                      <p className="text-[11px] text-ink-subtle line-clamp-2 mt-0.5 leading-snug">
-                        {currentSlide.description}
-                      </p>
-                    </div>
+                  <div className="text-left">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand block">
+                      Live Working Spec
+                    </span>
+                    <p className="text-xs font-bold text-ink line-clamp-1">
+                      {currentSlide.metrics}
+                    </p>
+                    <p className="text-[11px] text-ink-subtle line-clamp-2 mt-0.5">
+                      {currentSlide.description}
+                    </p>
                   </div>
                 </div>
 
                 {/* Bottom Overlay Info & Prev/Next Controls */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 z-20">
                   <div className="text-white max-w-lg">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-[#E6D3C3] block sm:hidden">
-                      Stage 0{activeSlide + 1} · {STAGE_NAMES[activeSlide]}
-                    </span>
                     <h2 className="text-lg sm:text-xl font-bold leading-snug drop-shadow-sm">
                       {currentSlide.title}
                     </h2>
@@ -288,6 +266,54 @@ export default function HeroSection() {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Bottom 4 Thumbnail Stage Switcher Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 bg-surface/95 backdrop-blur-md border-t border-border">
+                {HERO_VISUAL_SLIDES.map((slide, idx) => {
+                  const isActive = idx === activeSlide;
+                  const stageNames = [
+                    "Architecture & 3D",
+                    "Structural Design",
+                    "Commercial Planning",
+                    "Turnkey Interior",
+                  ];
+                  return (
+                    <button
+                      key={slide.id}
+                      type="button"
+                      onClick={() => setActiveSlide(idx)}
+                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${isActive
+                        ? "bg-brand-light/80 border-b-2 border-b-brand"
+                        : "hover:bg-surface-muted"
+                        }`}
+                    >
+                      <div className="relative w-10 h-10 rounded-md overflow-hidden shrink-0 hidden sm:block border border-border">
+                        <Image
+                          src={slide.mainImage}
+                          alt={slide.title}
+                          fill
+                          sizes="40px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <span
+                          className={`text-[10px] font-bold tracking-wider uppercase block truncate ${isActive ? "text-brand" : "text-ink-subtle"
+                            }`}
+                        >
+                          Stage 0{idx + 1}
+                        </span>
+                        <span
+                          className={`text-xs font-semibold block truncate ${isActive ? "text-ink font-bold" : "text-ink-muted"
+                            }`}
+                        >
+                          {stageNames[idx]}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
