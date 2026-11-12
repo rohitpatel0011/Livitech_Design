@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { EXTERIOR_DESIGNS } from "@/data/livitectData";
 import {
-  Sparkles,
   ArrowRight,
   Clock,
   Calendar,
@@ -71,33 +70,25 @@ export default function ExteriorDesignsIndexPage() {
             </nav>
 
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-light border border-brand/20 text-brand text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-brand" />
-                <span>3D Architectural Elevation & Facade Showcase</span>
-              </div>
-
               <h1 className="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
                 60+ Modern House Exterior Designs
               </h1>
 
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-                Your home’s exterior is its first impression. Explore our curated
-                collection of Vastu-aligned G+1 & G+2 villas, duplex front
-                elevations, and commercial facades crafted by Livitech Design
-                for Bihar homeowners.
+                3D architectural elevation & facade showcase — your home’s exterior is its first impression. Explore our curated collection of Vastu-aligned G+1 & G+2 villas, duplex front elevations, and commercial facades crafted by Livitech Design for Bihar homeowners.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-2 text-xs font-bold text-ink">
-                <span className="px-3 py-1 rounded-full bg-surface border border-border">
+                <span className="px-3 py-1 rounded-lg bg-surface border border-border">
                   G+1 & G+2 Villas
                 </span>
-                <span className="px-3 py-1 rounded-full bg-surface border border-border">
+                <span className="px-3 py-1 rounded-lg bg-surface border border-border">
                   Luxury Duplexes
                 </span>
-                <span className="px-3 py-1 rounded-full bg-surface border border-border">
+                <span className="px-3 py-1 rounded-lg bg-surface border border-border">
                   Commercial Facades
                 </span>
-                <span className="px-3 py-1 rounded-full bg-surface border border-border">
+                <span className="px-3 py-1 rounded-lg bg-surface border border-border">
                   Modern Wooden Louvers & Stone Cladding
                 </span>
               </div>
@@ -126,7 +117,7 @@ export default function ExteriorDesignsIndexPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
 
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full bg-brand text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+                      <span className="px-3 py-1 rounded-lg bg-brand text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
                         {post.category}
                       </span>
                     </div>

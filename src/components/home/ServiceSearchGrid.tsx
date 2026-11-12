@@ -8,9 +8,8 @@ import {
   ChevronLeft,
   ChevronRight,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
-import { CORE_SERVICES, SERVICES_SECTION_INTRO, ServiceItem } from "@/data/livitectData";
+import { CORE_SERVICES, ServiceItem } from "@/data/livitectData";
 
 export default function ServiceSearchGrid() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,7 +37,7 @@ export default function ServiceSearchGrid() {
   return (
     <section 
       id="services" 
-      className="py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40"
+      className="scroll-mt-24 py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -46,15 +45,11 @@ export default function ServiceSearchGrid() {
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6D3C3]/50 text-[#8E4F2A] text-xs font-extrabold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{SERVICES_SECTION_INTRO.eyebrow}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A120E] mt-3">
-            {SERVICES_SECTION_INTRO.title}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1A120E] tracking-tight">
+            Complete Architectural & Construction Capabilities
           </h2>
-          <p className="text-sm sm:text-base text-[#4A4A46] mt-3 leading-relaxed">
-            {SERVICES_SECTION_INTRO.description}
+          <p className="text-base sm:text-lg text-[#4A4A46] mt-3 leading-relaxed">
+            End-to-end building excellence engineered for Patna & Bihar — explore our specialized capabilities from 2D Vastu layouts and structural blueprints to turnkey construction and luxury interiors.
           </p>
         </div>
 

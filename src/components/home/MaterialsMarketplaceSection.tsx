@@ -18,15 +18,11 @@ export default function MaterialsMarketplaceSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider mb-2">
-              <Truck className="w-3.5 h-3.5" />
-              <span>Direct Mill Wholesale Sourcing</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
               Wholesale Building Materials Marketplace
             </h2>
-            <p className="text-base text-ink-muted mt-2 max-w-2xl">
-              Cut out local retail middlemen. Procure 100% genuine Tata Tiscon TMT steel, UltraTech cement, kiln-burnt red bricks, and vitrified tiles delivered directly to your site across Bihar.
+            <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
+              Direct mill wholesale sourcing across Bihar — cut out local retail middlemen. Procure 100% genuine Tata Tiscon TMT steel, UltraTech cement, kiln-burnt red bricks, and vitrified tiles delivered directly to your site.
             </p>
           </div>
 

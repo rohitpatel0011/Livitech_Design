@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   ShieldCheck,
   CheckCircle2,
-  HardHat,
   Eye,
   Sparkles,
 } from "lucide-react";
@@ -24,15 +23,11 @@ export default function OnSiteQualityGallery() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider mb-2">
-              <HardHat className="w-3.5 h-3.5" />
-              On-Site Quality Assurance & Audits
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
               How Livitech Design Works On-Site.
             </h2>
-            <p className="text-base text-ink-muted mt-2 max-w-2xl">
-              Contractors promise; civil engineers verify. See how our licensed engineers supervise every slab casting, column rebar spacing, and waterproofing test across Bihar.
+            <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
+              On-site quality assurance & structural audits — contractors promise; civil engineers verify. See how our licensed engineers supervise every slab casting, column rebar spacing, and waterproofing test across Bihar.
             </p>
           </div>
 

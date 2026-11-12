@@ -15,7 +15,6 @@ import {
   Send,
   Loader2,
   MessageSquare,
-  Sparkles,
 } from "lucide-react";
 import {
   TRUST_METRICS,
@@ -87,20 +86,17 @@ export default function TrustAndLocationSection() {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-24 bg-surface border-b border-border relative">
+    <section id="contact" className="scroll-mt-24 py-16 lg:py-24 bg-surface border-b border-border relative">
       <span id="office-locator" className="absolute -top-24 opacity-0 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Trust Badges Bar */}
         <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider">
-              Why Homeowners Choose Livitech Design
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-ink mt-2.5">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
               Engineered with Integrity. Backed by Data.
             </h2>
-            <p className="text-sm sm:text-base text-ink-muted mt-2">
-              Say goodbye to contractor disputes, unverified cement grades, and hidden costs. Livitech Design (livitechdesign.in) brings corporate architectural and engineering standards to Bihar.
+            <p className="text-base sm:text-lg text-ink-muted mt-3 leading-relaxed">
+              Why homeowners choose Livitech Design across Bihar — say goodbye to contractor disputes, unverified cement grades, and hidden costs with our corporate architectural and structural engineering standards.
             </p>
           </div>
 
@@ -303,15 +299,11 @@ export default function TrustAndLocationSection() {
             {/* Form Left Banner (5 Cols) - Deep Espresso background for high-contrast architectural identity */}
             <div className="lg:col-span-5 bg-ink p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
               <div className="relative z-10 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark/80 text-brand-light text-xs font-bold uppercase tracking-wider border border-brand-accent/30">
-                  <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
-                  <span>Free Architect Consultation</span>
-                </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
                   Start Your Project with Clear Engineering
                 </h3>
                 <p className="text-sm text-neutral-300 leading-relaxed">
-                  Book a direct 30-minute consultation with our Senior Architects & Civil Engineers at our Patna Kankarbagh Studio or via video call across Bihar.
+                  Free architect consultation — book a direct 30-minute session with our Senior Architects & Civil Engineers at our Patna Kankarbagh Studio or via video call across Bihar.
                 </p>
 
                 <div className="pt-3 space-y-2.5 text-xs text-neutral-200">

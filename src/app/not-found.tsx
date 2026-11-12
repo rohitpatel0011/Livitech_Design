@@ -6,9 +6,9 @@ export default function NotFound() {
   return (
     <main className="min-h-[70vh] flex items-center justify-center bg-surface-muted/50 px-4 py-16">
       <div className="max-w-xl w-full text-center bg-surface p-8 sm:p-10 rounded-2xl border border-border shadow-booking space-y-6">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-black uppercase tracking-wider">
+        <p className="text-3xl sm:text-4xl font-black text-brand tracking-tight">
           404 · Page Not Found
-        </span>
+        </p>
 
         <h1 className="text-3xl sm:text-4xl font-black text-ink tracking-tight">
           Ye service ya page uplabdh nahi hai

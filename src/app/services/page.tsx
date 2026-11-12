@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   PhoneCall,
   Calculator,
-  Sparkles,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -83,20 +82,12 @@ export default function ServicesIndexPage() {
             </nav>
 
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-light border border-brand/20 text-brand text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-brand" />
-                <span>End-to-End Architectural & Turnkey Construction</span>
-              </div>
-
               <h1 className="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
                 Our Construction & Design Services
               </h1>
 
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-                From residential homes and luxury interiors to commercial
-                buildings and 440+ quality-checked contracting, Livitech Design
-                brings licensed engineering precision to Bihar and Northern
-                India.
+                End-to-end architectural planning and turnkey construction — from residential duplex homes and luxury interiors to commercial complexes and 440+ quality-audited contracting, Livitech Design brings licensed engineering precision to Bihar and Northern India.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-3 text-xs font-semibold text-ink">
@@ -138,7 +129,7 @@ export default function ServicesIndexPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
 
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                      <span className="px-3 py-1 rounded-full bg-brand text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+                      <span className="px-3 py-1 rounded-lg bg-brand text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
                         {srv.badge}
                       </span>
                       <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">

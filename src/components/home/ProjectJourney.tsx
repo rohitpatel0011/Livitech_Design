@@ -10,20 +10,15 @@ export default function ProjectJourney() {
   const current = PROJECT_JOURNEY_STEPS[activeStep];
 
   return (
-    <section id="how-it-works" className="py-16 lg:py-24 bg-surface border-y border-border">
+    <section id="how-it-works" className="scroll-mt-24 py-16 lg:py-24 bg-surface border-y border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider">
-            End-to-End Execution
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-ink mt-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
             One platform. Every step of your project.
           </h2>
-          <p className="text-sm sm:text-base text-ink-muted mt-2">
-            Alag-alag architect, thekedar, aur material dukandar ke chakkar
-            lagane ki zarurat nahi — Livitech Design (livitechdesign.in) par 5 steps mein poora project
-            manage hota hai.
+          <p className="text-base sm:text-lg text-ink-muted mt-3 max-w-2xl mx-auto leading-relaxed">
+            End-to-end execution from concept to handover — no need to coordinate between separate architects, contractors, and material vendors. Livitech Design manages your complete building journey in 5 seamless steps.
           </p>
         </div>
 

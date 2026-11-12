@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Terms of Service | Livitech Design Patna, Bihar",
@@ -25,15 +24,11 @@ export default function TermsOfServicePage() {
             <span>/</span>
             <span className="text-brand font-bold">Terms of Service</span>
           </nav>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-bold uppercase tracking-wider mb-2">
-            <FileText className="w-3.5 h-3.5" />
-            <span>Legal Agreement</span>
-          </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
             Terms of Service
           </h1>
           <p className="text-xs sm:text-sm text-ink-muted mt-2">
-            Effective Date: January 2026 · Livitech Design (livitechdesign.in)
+            Legal Terms & Agreement · Effective Date: January 2026 · Livitech Design (livitechdesign.in)
           </p>
         </div>
       </div>

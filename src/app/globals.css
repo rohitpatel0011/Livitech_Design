@@ -52,6 +52,10 @@
   color: #1A120E;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--surface);
   color: var(--ink);

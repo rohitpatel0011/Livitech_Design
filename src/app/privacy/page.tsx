@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Livitech Design Patna, Bihar",
@@ -25,15 +24,11 @@ export default function PrivacyPolicyPage() {
             <span>/</span>
             <span className="text-brand font-bold">Privacy Policy</span>
           </nav>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-bold uppercase tracking-wider mb-2">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Transparency & Client Trust</span>
-          </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
             Privacy Policy
           </h1>
           <p className="text-xs sm:text-sm text-ink-muted mt-2">
-            Last Updated: January 2026 · Livitech Design (livitechdesign.in)
+            Transparency & Client Trust · Last Updated: January 2026 · Livitech Design (livitechdesign.in)
           </p>
         </div>
       </div>

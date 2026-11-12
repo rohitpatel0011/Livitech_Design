@@ -7,7 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 import { FEATURED_PROJECTS, ProjectItem } from "@/data/livitectData";
 
@@ -149,20 +148,16 @@ export default function FeaturedProjectsSection() {
       : FEATURED_PROJECTS.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-16 lg:py-24 bg-surface border-b border-border">
+    <section id="projects" className="scroll-mt-24 py-16 lg:py-24 bg-surface border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              Verified Portfolio in Bihar
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
               Featured Projects. Real Sites, Real Handover.
             </h2>
-            <p className="text-base text-ink-muted mt-2 max-w-2xl">
-              From contemporary residential duplex villas in Kankarbagh to structural commercial complexes on Bailey Road. Explore photos of actual site progress and completed handovers.
+            <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
+              Verified portfolio across Bihar — from contemporary residential duplex villas in Kankarbagh to structural commercial complexes on Bailey Road. Explore photos of actual site progress and completed handovers.
             </p>
           </div>
 

@@ -44,10 +44,10 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
     primaryCtaHref: "#cost-estimator",
   },
   {
-    headingLine1: "Build modern commercial spaces.",
-    headingLine2: "Designed for growing businesses today.",
+    headingLine1: "Smart spaces for your business.",
+    headingLine2: "Built to attract more customers.",
     description:
-      "High-return commercial floor layouts, modern glass elevations, basement parking plans, and complete municipal compliance for complexes and showrooms.",
+      "Modern glass fronts, spacious shop layouts, easy parking plans, and full government approval support for commercial buildings.",
     primaryCtaText: "Explore Commercial Build",
     primaryCtaHref: "/services/commercial-construction",
   },
@@ -100,9 +100,8 @@ export default function HeroSection() {
           return (
             <div
               key={slide.id}
-              className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
-                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
-              }`}
+              className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                }`}
             >
               <Image
                 src={slide.mainImage}
@@ -156,12 +155,20 @@ export default function HeroSection() {
                 </span>
                 <ArrowRight className="w-4 h-4 shrink-0" />
               </Link>
-              <Link
-                href="#services"
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("services");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    router.push("/#services");
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all text-sm sm:text-base cursor-pointer shadow-sm min-w-[170px]"
               >
                 <span>Explore Services</span>
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -184,12 +191,15 @@ export default function HeroSection() {
 
                 {/* Top Left & Right Stage Badges */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
-                  <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                  {/* <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
                     {currentSlide.stageTag}
-                  </span>
-                  <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
+                  </span> */}
+                  {/* <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-brand-light" />
                     {currentSlide.location}
+                  </span> */}
+                  <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                    {currentSlide.stageTag}
                   </span>
                 </div>
 
@@ -273,11 +283,10 @@ export default function HeroSection() {
                       key={slide.id}
                       type="button"
                       onClick={() => setActiveSlide(idx)}
-                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${
-                        isActive
-                          ? "bg-brand-light/80 border-b-2 border-b-brand"
-                          : "hover:bg-surface-muted"
-                      }`}
+                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${isActive
+                        ? "bg-brand-light/80 border-b-2 border-b-brand"
+                        : "hover:bg-surface-muted"
+                        }`}
                     >
                       <div className="relative w-10 h-10 rounded-md overflow-hidden shrink-0 hidden sm:block border border-border">
                         <Image
@@ -290,16 +299,14 @@ export default function HeroSection() {
                       </div>
                       <div className="min-w-0">
                         <span
-                          className={`text-[10px] font-bold tracking-wider uppercase block truncate ${
-                            isActive ? "text-brand" : "text-ink-subtle"
-                          }`}
+                          className={`text-[10px] font-bold tracking-wider uppercase block truncate ${isActive ? "text-brand" : "text-ink-subtle"
+                            }`}
                         >
                           Stage 0{idx + 1}
                         </span>
                         <span
-                          className={`text-xs font-semibold block truncate ${
-                            isActive ? "text-ink font-bold" : "text-ink-muted"
-                          }`}
+                          className={`text-xs font-semibold block truncate ${isActive ? "text-ink font-bold" : "text-ink-muted"
+                            }`}
                         >
                           {stageNames[idx]}
                         </span>

@@ -155,20 +155,6 @@ export default function ServiceDetailClient({
           <article className="lg:col-span-8 space-y-12">
             {/* Header Area */}
             <header className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider border border-brand/20">
-                  {service.badge}
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface text-ink-muted text-xs font-semibold border border-border">
-                  <Clock className="w-3.5 h-3.5 text-brand" />
-                  Turnaround: {service.turnaroundTime || "3 – 7 Working Days"}
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface text-ink-muted text-xs font-semibold border border-border">
-                  <MapPin className="w-3.5 h-3.5 text-brand" />
-                  Kankarbagh Studio & On-Site Bihar
-                </span>
-              </div>
-
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight leading-tight">
                 {service.title}
               </h1>
@@ -176,6 +162,17 @@ export default function ServiceDetailClient({
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
                 {service.heroSubtitle || service.shortDesc}
               </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface text-ink-muted text-xs font-semibold border border-border">
+                  <Clock className="w-3.5 h-3.5 text-brand" />
+                  Turnaround: {service.turnaroundTime || "3 – 7 Working Days"}
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface text-ink-muted text-xs font-semibold border border-border">
+                  <MapPin className="w-3.5 h-3.5 text-brand" />
+                  Kankarbagh Studio & On-Site Bihar
+                </span>
+              </div>
 
               {/* Trust Highlight Chips */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs sm:text-sm font-semibold text-ink-muted">

@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BIHAR_SEO_CITIES } from "@/data/citySeoData";
 import {
-  MapPin,
-  Building2,
   PhoneCall,
   ArrowRight,
   ShieldCheck,
@@ -46,19 +44,12 @@ export default function LocationsIndexPage() {
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-light border border-brand/20 text-brand text-xs font-bold uppercase tracking-wider">
-              <MapPin className="w-3.5 h-3.5 text-brand" />
-              <span>Bihar Regional Coverage & Desks</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
               Architecture & Construction Across Bihar
             </h1>
 
             <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-              Headquartered at Kankarbagh, Patna, Livitech Design delivers
-              licensed civil engineering, Vastu 2D/3D floor planning, and
-              transparent itemized BOQ estimation across all key Bihar districts.
+              Bihar regional coverage — headquartered at Kankarbagh, Patna, Livitech Design delivers licensed civil engineering, Vastu 2D/3D floor planning, and transparent itemized BOQ estimation across all key Bihar districts.
             </p>
 
             <div className="pt-2 flex items-center gap-2 text-xs font-bold text-ink">
@@ -150,16 +141,11 @@ export default function LocationsIndexPage() {
         <div className="mt-16 rounded-3xl bg-ink text-white p-8 sm:p-12 border border-border shadow-booking">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-dark border border-brand-accent/30 text-brand-light text-xs font-bold uppercase tracking-wider">
-                <Building2 className="w-3.5 h-3.5 text-brand-accent" />
-                Central Headquarters
-              </span>
               <h3 className="text-2xl sm:text-4xl font-extrabold text-white">
-                Visit Our Studio at Kankarbagh, Patna
+                Visit Our Central Studio at Kankarbagh, Patna
               </h3>
               <p className="text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed">
-                Meet our chief architects, review physical material samples, and
-                explore 3D VR walkthroughs for your upcoming project.
+                Central headquarters — meet our chief architects, review physical material samples, and explore 3D VR walkthroughs for your upcoming project.
               </p>
               <div className="text-xs text-neutral-300 space-y-1">
                 <p>

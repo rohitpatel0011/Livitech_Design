@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
-  Calculator,
   CheckCircle2,
   Ruler,
   MapPin,
@@ -164,7 +163,7 @@ export default function CostEstimatorSection() {
   return (
     <section
       id="cost-estimator"
-      className="py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40"
+      className="scroll-mt-24 py-16 lg:py-24 bg-[#F9F6F0] border-b border-[#E6D3C3]/40"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -172,15 +171,11 @@ export default function CostEstimatorSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6D3C3]/50 text-[#8E4F2A] text-xs font-extrabold uppercase tracking-wider">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Interactive BOQ Estimator</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A120E] mt-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1A120E] tracking-tight">
             Know your construction cost before you build.
           </h2>
-          <p className="text-sm sm:text-base text-[#4A4A46] mt-3 leading-relaxed">
-            Patna aur Bihar ke current material market rates ke hisab se apne plot size aur quality package ke mutabiq instant rough cost calculate karein. Transparent pricing with complete material breakdown.
+          <p className="text-base sm:text-lg text-[#4A4A46] mt-3 leading-relaxed">
+            Interactive BOQ cost estimation based on real-time Patna & Bihar material rates. Select your plot size and package for instant, transparent pricing with complete itemized breakdown.
           </p>
         </div>
 
@@ -210,7 +205,7 @@ export default function CostEstimatorSection() {
 
                 <div className="relative z-10 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-[#8E4F2A] text-white text-[10px] font-extrabold uppercase shadow">
+                    <span className="px-3 py-1 rounded-lg bg-[#8E4F2A] text-white text-[10px] font-extrabold uppercase shadow">
                       {currentPkg.badge}
                     </span>
                     <span className="text-xs font-bold text-[#E6D3C3]">

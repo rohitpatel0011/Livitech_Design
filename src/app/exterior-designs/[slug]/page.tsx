@@ -160,23 +160,23 @@ export default async function ExteriorDesignDetailPage({
           {/* Main Article Body (8 Cols) */}
           <article className="lg:col-span-8 space-y-8">
             <header className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider border border-brand/20">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight leading-tight">
+                {post.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="px-3 py-1 rounded-lg bg-surface text-brand text-xs font-extrabold uppercase tracking-wider border border-border">
                   {post.category}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface text-ink-muted text-xs font-semibold border border-border">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface text-ink-muted text-xs font-semibold border border-border">
                   <Calendar className="w-3.5 h-3.5 text-brand" />
                   {post.publishDate}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface text-ink-muted text-xs font-semibold border border-border">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface text-ink-muted text-xs font-semibold border border-border">
                   <Clock className="w-3.5 h-3.5 text-brand" />
                   {post.readTime}
                 </span>
               </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight leading-tight">
-                {post.title}
-              </h1>
 
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
                 {post.subtitle}

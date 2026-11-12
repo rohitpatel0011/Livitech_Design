@@ -11,7 +11,6 @@ import {
   Clock,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -57,20 +56,16 @@ export default function BlueprintRealitySlider() {
   };
 
   return (
-    <section id="blueprint-reality" className="py-16 lg:py-24 bg-surface-muted border-b border-border">
+    <section id="blueprint-reality" className="scroll-mt-24 py-16 lg:py-24 bg-surface-muted border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Visual Proof · Design To Execution</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-ink mt-2.5">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
               From 2D Blueprint to On-Site Reality
             </h2>
-            <p className="text-sm sm:text-base text-ink-muted mt-1.5 max-w-2xl">
-              Drag the interactive slider to compare our precision 2D CAD blueprints and 3D architectural renders directly against real site execution.
+            <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
+              Visual proof from design to execution — drag the interactive slider to compare our precision CAD blueprints and 3D architectural renders directly against real site construction in Bihar.
             </p>
           </div>
 

@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Calendar,
   Clock,
-  Sparkles,
   ArrowRight,
   CheckCircle2,
   X,
@@ -51,16 +50,12 @@ export default function ExteriorDesignsSection() {
     <section
       id="exterior-designs"
       aria-labelledby="exterior-designs-heading"
-      className="py-16 lg:py-24 bg-surface-muted/60 border-b border-border overflow-hidden"
+      className="scroll-mt-24 py-16 lg:py-24 bg-surface-muted/60 border-b border-border overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider mb-2.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              60+ Architecture Elevation Concepts
-            </div>
             <h2
               id="exterior-designs-heading"
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight"
@@ -68,8 +63,7 @@ export default function ExteriorDesignsSection() {
               Exterior Designs & Elevations
             </h2>
             <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
-              Explore creative elevation design ideas, modern facade concepts,
-              and architectural inspirations designed for modern homes in Bihar by{" "}
+              Explore 60+ architectural elevation concepts, modern facade designs, and structural inspirations crafted for Bihar homes by{" "}
               <strong className="text-brand font-bold">
                 livitechdesign.in
               </strong>

@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   MapPin,
   MessageSquare,
-  Sparkles,
   CheckCircle2,
 } from "lucide-react";
 import { HAPPY_CLIENTS } from "@/data/livitectData";
@@ -32,16 +31,12 @@ export default function HappyClientsSection() {
     <section
       id="happy-clients"
       aria-labelledby="happy-clients-heading"
-      className="py-16 lg:py-24 bg-surface border-b border-border overflow-hidden"
+      className="scroll-mt-24 py-16 lg:py-24 bg-surface border-b border-border overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light text-brand text-xs font-extrabold uppercase tracking-wider mb-2.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              Real Homeowner Experiences
-            </div>
             <h2
               id="happy-clients-heading"
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight"
@@ -49,12 +44,11 @@ export default function HappyClientsSection() {
               Our Happy Clients
             </h2>
             <p className="text-base sm:text-lg text-ink-muted mt-2 max-w-2xl leading-relaxed">
-              Meet the satisfied homeowners who have turned their dream houses
-              into reality with{" "}
+              Real homeowner experiences and verified building reviews across Bihar with{" "}
               <strong className="text-brand font-bold">
                 livitechdesign.in
               </strong>
-              . Real houses, Vastu 2D/3D elevations, and verified reviews across Bihar.
+              . Real houses, Vastu 2D/3D elevations, and turnkey handovers.
             </p>
           </div>
 

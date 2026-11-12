@@ -5,7 +5,6 @@ import Link from "next/link";
 import { BIHAR_SEO_CITIES, getCityBySlug } from "@/data/citySeoData";
 import { CORE_SERVICES } from "@/data/livitectData";
 import {
-  MapPin,
   PhoneCall,
   CheckCircle2,
   ArrowRight,
@@ -139,17 +138,12 @@ export default async function CitySeoPage({ params }: PageProps) {
             </nav>
 
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-light border border-brand/20 text-brand text-xs font-bold uppercase tracking-wider">
-                <MapPin className="w-3.5 h-3.5 text-brand" />
-                <span>Verified Service Zone: {cityData.cityName}, Bihar</span>
-              </div>
-
               <h1 className="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight leading-[1.15]">
                 {cityData.heroHeadline}
               </h1>
 
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-                {cityData.heroDescription}
+                Verified service zone in {cityData.cityName}, Bihar — {cityData.heroDescription}
               </p>
 
               {/* Rate Highlight Box */}
@@ -176,7 +170,7 @@ export default async function CitySeoPage({ params }: PageProps) {
                   {cityData.popularLocalAreas.map((area) => (
                     <span
                       key={area}
-                      className="px-3 py-1 rounded-full bg-surface border border-border text-xs font-bold text-ink hover:border-brand/40 transition-colors"
+                      className="px-3 py-1 rounded-lg bg-surface border border-border text-xs font-bold text-ink hover:border-brand/40 transition-colors"
                     >
                       📍 {area}
                     </span>
