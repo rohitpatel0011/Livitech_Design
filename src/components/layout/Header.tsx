@@ -12,13 +12,13 @@ interface NavPillItem {
   activeColor: string;
 }
 
-// Focused navigation items with custom active colors (Earthy Architectural Palette)
+// Focused navigation items with custom active colors (Copper, Silver Blue & Navy Palette)
 const PILL_NAV_ITEMS: NavPillItem[] = [
-  { label: "Home", href: "/", activeColor: "#6B4A2E" }, // Rich Bronze
-  { label: "Services", href: "/#services", activeColor: "#3A2418" }, // Deep Espresso
-  { label: "Projects", href: "/#projects", activeColor: "#A88462" }, // Warm Sandstone
-  { label: "Estimator", href: "/#cost-estimator", activeColor: "#4A4A46" }, // Architectural Slate
-  { label: "Contact", href: "/#contact", activeColor: "#1A120E" }, // Obsidian Espresso
+  { label: "Home", href: "/", activeColor: "#DA5F36" }, // Copper
+  { label: "Services", href: "/#services", activeColor: "#0D0F1B" }, // Navy
+  { label: "Projects", href: "/#projects", activeColor: "#8699C1" }, // Silver Blue
+  { label: "Estimator", href: "/#cost-estimator", activeColor: "#5B7099" }, // Slate Blue
+  { label: "Contact", href: "/#contact", activeColor: "#DA5F36" }, // Copper
 ];
 
 export default function Header() {
@@ -156,10 +156,10 @@ export default function Header() {
                 >
                   {item.label}
 
-                  {/* Hover Top-Rounded Travertine Bar for Inactive Items */}
+                  {/* Hover Top-Rounded Bar for Inactive Items */}
                   {!isActive && (
                     <span
-                      className={`pointer-events-none absolute left-0 -bottom-1.5 group-hover:bottom-0 w-full h-[5px] rounded-t-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 ${isTransparent ? "bg-white/40" : "bg-[#D5C4AE]"
+                      className={`pointer-events-none absolute left-0 -bottom-1.5 group-hover:bottom-0 w-full h-[5px] rounded-t-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 ${isTransparent ? "bg-white/40" : "bg-[#8699C1]"
                         }`}
                     />
                   )}
@@ -174,7 +174,7 @@ export default function Header() {
                 width: `${indicatorStyle.width}px`,
                 left: `${indicatorStyle.left}px`,
                 backgroundColor: isTransparent
-                  ? "#D5C4AE"
+                  ? "#8699C1"
                   : indicatorStyle.backgroundColor,
               }}
             />
@@ -251,13 +251,13 @@ export default function Header() {
                     style={{
                       color: isTransparent
                         ? isActive
-                          ? "#D5C4AE"
+                          ? "#8699C1"
                           : "rgba(255, 255, 255, 0.75)"
                         : isActive
                           ? item.activeColor
                           : "#83818c",
                       borderBottom: isActive
-                        ? `3px solid ${isTransparent ? "#D5C4AE" : item.activeColor
+                        ? `3px solid ${isTransparent ? "#8699C1" : item.activeColor
                         }`
                         : "3px solid transparent",
                     }}

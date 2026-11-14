@@ -132,7 +132,7 @@ export default function HeroSection() {
                 {/* Main Heading (Exact 9 words: 4 words + 5 words, 2 lines) */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
                   <span>{stageContent.headingLine1}</span>
-                  <span className="text-[#E6D3C3] block mt-1">
+                  <span className="text-[#8699C1] block mt-1">
                     {stageContent.headingLine2}
                   </span>
                 </h1>
@@ -148,7 +148,7 @@ export default function HeroSection() {
             <div className="pt-6 lg:pt-0 mt-6 lg:mt-auto flex flex-wrap items-center gap-3.5 pb-1">
               <Link
                 href={stageContent.primaryCtaHref}
-                className="inline-flex items-center justify-center gap-2 bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[260px] whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-[#DA5F36] hover:bg-[#BD4922] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[260px] whitespace-nowrap"
               >
                 <span key={activeSlide} className="animate-hero-fade">
                   {stageContent.primaryCtaText}
@@ -320,16 +320,16 @@ export default function HeroSection() {
         </div>
 
         {/* QUICK PROJECT PLANNER SEARCH BAR */}
-        <div className="mt-8 lg:mt-10 bg-white/95 backdrop-blur-md rounded-2xl border border-[#E6D3C3] shadow-xl p-3.5 sm:p-5 text-[#1A120E]">
+        <div className="mt-8 lg:mt-10 bg-white/95 backdrop-blur-md rounded-2xl border border-[#CFDAEC] shadow-xl p-3.5 sm:p-5 text-[#0D0F1B]">
           <form
             onSubmit={handleBookingStart}
             className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center"
           >
             {/* Input 1: Select Service */}
-            <div className="md:col-span-4 bg-[#F9F6F0] rounded-xl px-4 py-2.5 border border-[#E6D3C3] hover:border-[#8E4F2A]/60 transition-colors">
+            <div className="md:col-span-4 bg-[#F4F6FA] rounded-xl px-4 py-2.5 border border-[#CFDAEC] hover:border-[#DA5F36]/60 transition-colors">
               <label
                 htmlFor="hero-selected-service"
-                className="text-[11px] font-bold uppercase tracking-wider text-[#8E4F2A] flex items-center gap-1.5"
+                className="text-[11px] font-bold uppercase tracking-wider text-[#DA5F36] flex items-center gap-1.5"
               >
                 <Layers className="w-3.5 h-3.5" />
                 Select Service
@@ -339,10 +339,10 @@ export default function HeroSection() {
                 name="selectedService"
                 value={selectedService}
                 onChange={(e) => setSelectedService(e.target.value)}
-                className="w-full bg-transparent text-sm font-bold text-[#1A120E] focus:outline-none mt-0.5 cursor-pointer"
+                className="w-full bg-transparent text-sm font-bold text-[#0D0F1B] focus:outline-none mt-0.5 cursor-pointer"
               >
                 {CORE_SERVICES.map((s) => (
-                  <option key={s.id} value={s.id} className="text-[#1A120E]">
+                  <option key={s.id} value={s.id} className="text-[#0D0F1B]">
                     {s.title} ({s.badge})
                   </option>
                 ))}
@@ -350,10 +350,10 @@ export default function HeroSection() {
             </div>
 
             {/* Input 2: Project Location */}
-            <div className="md:col-span-3 bg-[#F9F6F0] rounded-xl px-4 py-2.5 border border-[#E6D3C3] hover:border-[#8E4F2A]/60 transition-colors">
+            <div className="md:col-span-3 bg-[#F4F6FA] rounded-xl px-4 py-2.5 border border-[#CFDAEC] hover:border-[#DA5F36]/60 transition-colors">
               <label
                 htmlFor="hero-selected-city"
-                className="text-[11px] font-bold uppercase tracking-wider text-[#8E4F2A] flex items-center gap-1.5"
+                className="text-[11px] font-bold uppercase tracking-wider text-[#DA5F36] flex items-center gap-1.5"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 Project Location
@@ -363,10 +363,10 @@ export default function HeroSection() {
                 name="selectedCity"
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
-                className="w-full bg-transparent text-sm font-bold text-[#1A120E] focus:outline-none mt-0.5 cursor-pointer"
+                className="w-full bg-transparent text-sm font-bold text-[#0D0F1B] focus:outline-none mt-0.5 cursor-pointer"
               >
                 {BIHAR_CITIES.map((city) => (
-                  <option key={city} value={city} className="text-[#1A120E]">
+                  <option key={city} value={city} className="text-[#0D0F1B]">
                     {city}
                   </option>
                 ))}
@@ -374,10 +374,10 @@ export default function HeroSection() {
             </div>
 
             {/* Input 3: Built-up Area */}
-            <div className="md:col-span-2 bg-[#F9F6F0] rounded-xl px-4 py-2.5 border border-[#E6D3C3] hover:border-[#8E4F2A]/60 transition-colors">
+            <div className="md:col-span-2 bg-[#F4F6FA] rounded-xl px-4 py-2.5 border border-[#CFDAEC] hover:border-[#DA5F36]/60 transition-colors">
               <label
                 htmlFor="hero-plot-area"
-                className="text-[11px] font-bold uppercase tracking-wider text-[#8E4F2A] flex items-center gap-1.5"
+                className="text-[11px] font-bold uppercase tracking-wider text-[#DA5F36] flex items-center gap-1.5"
               >
                 <Ruler className="w-3.5 h-3.5" />
                 Area (Sq.Ft)
@@ -389,7 +389,7 @@ export default function HeroSection() {
                 value={plotArea}
                 onChange={(e) => setPlotArea(e.target.value)}
                 placeholder="2000"
-                className="w-full bg-transparent text-sm font-bold text-[#1A120E] focus:outline-none mt-0.5"
+                className="w-full bg-transparent text-sm font-bold text-[#0D0F1B] focus:outline-none mt-0.5"
               />
             </div>
 
@@ -397,7 +397,7 @@ export default function HeroSection() {
             <div className="md:col-span-3 flex h-full">
               <button
                 type="submit"
-                className="w-full bg-[#8E4F2A] hover:bg-[#6D3B1E] text-white font-extrabold text-sm rounded-xl px-4 py-3.5 flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer min-h-[50px]"
+                className="w-full bg-[#DA5F36] hover:bg-[#BD4922] text-white font-extrabold text-sm rounded-xl px-4 py-3.5 flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer min-h-[50px]"
               >
                 <span>Get Instant Plan</span>
                 <ArrowRight className="w-4 h-4" />

@@ -1,35 +1,86 @@
 @import "tailwindcss";
 
 :root {
-  --espresso-950: #1A120E;
-  --espresso-800: #3A2418;
-  --bronze-600: #6B4A2E;
-  --sandstone-400: #A88462;
-  --travertine-200: #D5C4AE;
-  --slate-600: #4A4A46;
+  /* 1st Brand Color: Copper (#DA5F36) & Shades */
+  --copper-50: #FDF6F3;
+  --copper-100: #FBECE5;
+  --copper-200: #F5D2C5;
+  --copper-300: #EDB09B;
+  --copper-400: #E48566;
+  --copper-500: #DA5F36;
+  --copper-600: #BD4922;
+  --copper-700: #9C3817;
 
-  --brand: #6B4A2E;
-  --brand-dark: #3A2418;
-  --brand-accent: #A88462;
-  --brand-light: #D5C4AE;
+  /* 2nd Supporting Color: Silver Blue (#8699C1) & Shades */
+  --silver-blue-50: #F4F6FA;
+  --silver-blue-100: #E6ECF5;
+  --silver-blue-200: #CFDAEC;
+  --silver-blue-300: #B3C2DE;
+  --silver-blue-400: #9AAECF;
+  --silver-blue-500: #8699C1;
+  --silver-blue-600: #6478A3;
+  --silver-blue-700: #4B5C82;
 
-  --ink: #1A120E;
-  --ink-muted: #4A4A46;
-  --ink-subtle: #78756F;
+  /* 3rd Deep Base Color: Navy (#0D0F1B) & Shades */
+  --navy-950: #0D0F1B;
+  --navy-900: #131627;
+  --navy-800: #1C2138;
+  --navy-700: #262E4E;
+  --navy-600: #333E67;
+  --navy-500: #4B5368;
+  --navy-400: #707A94;
 
+  /* Semantic Brand Tokens */
+  --brand: #DA5F36;
+  --brand-hover: #BD4922;
+  --brand-dark: #8699C1;
+  --brand-accent: #0D0F1B;
+  --brand-light: #FBECE5;
+
+  /* Semantic Typography & Ink */
+  --ink: #0D0F1B;
+  --ink-muted: #4B5368;
+  --ink-subtle: #707A94;
+
+  /* Semantic Surfaces & Backgrounds */
   --surface: #FFFFFF;
-  --surface-muted: #FAF7F2;
-  --surface-subtle: #F3EDE4;
+  --surface-muted: #F4F6FA;
+  --surface-subtle: #E6ECF5;
 
-  --border: #D5C4AE;
-  --border-strong: #A88462;
+  /* Semantic Borders */
+  --border: #CFDAEC;
+  --border-strong: #8699C1;
+
+  /* Legacy Earthy Palette Aliases (backward-compatibility) */
+  --espresso-950: #0D0F1B;
+  --espresso-800: #1C2138;
+  --bronze-600: #DA5F36;
+  --sandstone-400: #8699C1;
+  --travertine-200: #CFDAEC;
+  --slate-600: #4B5368;
 }
 
 @theme inline {
   --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
   --color-brand-dark: var(--brand-dark);
   --color-brand-accent: var(--brand-accent);
   --color-brand-light: var(--brand-light);
+
+  --color-copper-50: var(--copper-50);
+  --color-copper-100: var(--copper-100);
+  --color-copper-500: var(--copper-500);
+  --color-copper-600: var(--copper-600);
+
+  --color-silver-blue-50: var(--silver-blue-50);
+  --color-silver-blue-100: var(--silver-blue-100);
+  --color-silver-blue-200: var(--silver-blue-200);
+  --color-silver-blue-500: var(--silver-blue-500);
+  --color-silver-blue-600: var(--silver-blue-600);
+
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
 
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
@@ -42,18 +93,14 @@
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
 
-  --shadow-booking: 0 2px 10px 0 rgba(26, 18, 14, 0.06);
-  --shadow-booking-hover: 0 12px 28px 0 rgba(58, 36, 24, 0.14);
+  --shadow-booking: 0 2px 12px 0 rgba(13, 15, 27, 0.08);
+  --shadow-booking-hover: 0 12px 30px 0 rgba(218, 95, 54, 0.18);
 }
 
 /* Text Selection Color */
 ::selection {
-  background-color: #D5C4AE;
-  color: #1A120E;
-}
-
-html {
-  scroll-behavior: smooth;
+  background-color: #8699C1;
+  color: #0D0F1B;
 }
 
 body {
@@ -68,22 +115,8 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-hero-fade {
-  animation: heroFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

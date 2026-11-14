@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-
-const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://livitechdesign.in"),
@@ -51,7 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-surface text-ink antialiased`}>
+      <body className="bg-surface text-ink antialiased font-sans">
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
