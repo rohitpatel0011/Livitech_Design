@@ -1,5 +1,5 @@
 import HeroSection from "@/components/home/HeroSection";
-import ServiceSearchGrid from "@/components/home/ServiceSearchGrid";
+import ServiceCapabilityGrid from "@/components/sections/ServiceCapabilityGrid";
 import ExteriorDesignsSection from "@/components/home/ExteriorDesignsSection";
 import HappyClientsSection from "@/components/home/HappyClientsSection";
 import BlueprintRealitySlider from "@/components/home/BlueprintRealitySlider";
@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ServiceSearchGrid />
+      <ServiceCapabilityGrid />
       <CostEstimatorSection />
       <ExteriorDesignsSection />
       <HappyClientsSection />

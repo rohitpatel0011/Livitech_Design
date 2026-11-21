@@ -228,7 +228,7 @@ export const HERO_VISUAL_SLIDES: HeroVisualSlide[] = [
     location: "Architecture & 3D Elevation",
     metrics: "2D Vastu Floor Plans · Modern 3D Front Elevations · BIM Drawings",
     description: "Visualize your entire dream home in high-definition 3D with precision floor plans before foundation work begins.",
-    mainImage: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
+    mainImage: "/images/hero/hero-stage-1-architecture.jpg",
     blueprintThumb: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80",
   },
   {
@@ -238,8 +238,8 @@ export const HERO_VISUAL_SLIDES: HeroVisualSlide[] = [
     location: "Structural Engineering",
     metrics: "Earthquake-Resistant Design · Foundation Drawings · Civil Audits",
     description: "Licensed structural engineers ensure scientific steel reinforcement, certified concrete strength, and routine site checks.",
-    mainImage: "/images/rcc-structural-supervision.jpg",
-    blueprintThumb: "/images/rcc-structural-supervision.jpg",
+    mainImage: "/images/hero/hero-stage-2-structural.jpg",
+    blueprintThumb: "/images/hero/hero-stage-2-structural.jpg",
   },
   {
     id: "stage-3",
@@ -248,7 +248,7 @@ export const HERO_VISUAL_SLIDES: HeroVisualSlide[] = [
     location: "Commercial Construction",
     metrics: "Municipal Bye-Law Approval · High-Rise Engineering · Turnkey Delivery",
     description: "End-to-end commercial solutions with government-approved maps, fire safety norms, and premium facade engineering.",
-    mainImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
+    mainImage: "/images/hero/hero-stage-3-commercial.jpg",
     blueprintThumb: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80",
   },
   {
@@ -258,7 +258,7 @@ export const HERO_VISUAL_SLIDES: HeroVisualSlide[] = [
     location: "Turnkey Interior",
     metrics: "Photorealistic 3D Walkthrough · Modular Woodwork · False Ceiling",
     description: "Custom turnkey interiors with modern modular kitchens, premium wardrobes, Italian-spec tiling, and designer lighting.",
-    mainImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
+    mainImage: "/images/hero/hero-stage-4-interior.jpg",
     blueprintThumb: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400&q=80",
   },
 ];
@@ -289,7 +289,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Stage-Wise Quality & Timeline Tracking",
     ],
     images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-residential-construction.jpg",
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -391,7 +391,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Modern Glass & ACP Branding Facades",
     ],
     images: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-commercial-construction.jpg",
       "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -489,7 +489,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Plumbing, Electrical & Repainting Care",
     ],
     images: [
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-maintenance-service.jpg",
       "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -580,7 +580,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "False Ceiling, Lighting & Wall Panelling",
     ],
     images: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-interior-design.jpg",
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -678,7 +678,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Structural & MEP Engineering Drawings",
     ],
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-architectural-services.jpg",
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -776,7 +776,7 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Laser-Level Shuttering & On-Time Delivery",
     ],
     images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
+      "/images/services/service-contractor-services.jpg",
       "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=85",
     ],
