@@ -130,39 +130,58 @@ export default function BlueprintRealitySlider() {
                   className="object-cover"
                 />
                 {/* Blueprint Grid Tint Overlay for Technical Feel */}
-                <div className="absolute inset-0 bg-ink/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-[#0D0F1B]/30 mix-blend-multiply" />
+
+                {/* Subtle CAD Grid HUD lines */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+
+                {/* Technical Blueprint Watermark HUD */}
+                <div className="absolute bottom-12 left-4 text-[10px] font-mono text-cyan-300/80 bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded border border-cyan-500/30">
+                  CAD LAYER: IS 456 RCC VETTED • ZONE IV SEISMIC
+                </div>
               </div>
 
               {/* Top Left Label (Before) */}
               <div className="absolute top-4 left-4 z-10 pointer-events-none">
-                <span className="px-3 py-1.5 rounded-lg bg-ink/85 backdrop-blur-md text-white text-xs font-bold border border-white/15 shadow">
+                <span className="px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-white text-xs font-mono font-bold border border-white/20 shadow-md flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                   BEFORE: {currentProject.beforeLabel}
                 </span>
               </div>
 
               {/* Top Right Label (After) */}
               <div className="absolute top-4 right-4 z-10 pointer-events-none">
-                <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold shadow">
+                <span className="px-3 py-1.5 rounded-full bg-[#DA5F36] text-white text-xs font-mono font-bold shadow-md flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
                   AFTER: {currentProject.afterLabel}
                 </span>
               </div>
 
-              {/* VERTICAL DIVIDER LINE & DRAG HANDLE */}
+              {/* VERTICAL DIVIDER LINE & DRAG HANDLE WITH LASER SCAN GLOW */}
               <div
-                className="absolute top-0 bottom-0 z-20 w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.6)] pointer-events-none"
+                className="absolute top-0 bottom-0 z-20 w-[3px] bg-gradient-to-b from-[#DA5F36] via-white to-[#DA5F36] animate-scan-glow pointer-events-none"
                 style={{ left: `${sliderPosition}%` }}
               >
                 {/* Center Circular Terracotta Drag Button */}
-                <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand text-white border-2 border-white shadow-lg flex items-center justify-center">
-                  <MoveHorizontal className="w-5 h-5" />
+                <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#DA5F36] text-white border-2 border-white shadow-2xl flex items-center justify-center transition-transform hover:scale-110">
+                  <MoveHorizontal className="w-5 h-5 drop-shadow" />
                 </div>
               </div>
 
-              {/* Bottom Quick Range Bar for Accessibility / Easy Tap */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 bg-black/65 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15 flex items-center gap-3">
-                <span className="text-[11px] font-semibold text-white whitespace-nowrap">
-                  Slide to Compare ({Math.round(sliderPosition)}%)
-                </span>
+              {/* Bottom Quick Range Bar & Presets for Accessibility / Easy Tap */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 flex items-center gap-3 shadow-lg">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSliderPosition(20);
+                  }}
+                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded transition-colors ${
+                    sliderPosition < 35 ? "bg-[#DA5F36] text-white" : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  2D CAD
+                </button>
                 <input
                   type="range"
                   min={5}
@@ -170,8 +189,20 @@ export default function BlueprintRealitySlider() {
                   value={sliderPosition}
                   onChange={(e) => setSliderPosition(Number(e.target.value))}
                   aria-label="Comparison slider percentage"
-                  className="w-24 sm:w-32 accent-brand cursor-pointer"
+                  className="w-20 sm:w-28 accent-[#DA5F36] cursor-pointer"
                 />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSliderPosition(80);
+                  }}
+                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded transition-colors ${
+                    sliderPosition > 65 ? "bg-[#DA5F36] text-white" : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  3D Reality
+                </button>
               </div>
             </div>
           </div>

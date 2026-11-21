@@ -61,6 +61,27 @@ const HERO_STAGE_CONTENT: HeroStageContent[] = [
   },
 ];
 
+const KEN_BURNS_BG_CLASSES = [
+  "animate-ken-burns-flip-1",
+  "animate-ken-burns-flip-2",
+  "animate-ken-burns-flip-3",
+  "animate-ken-burns-flip-4",
+];
+
+const KEN_BURNS_CARD_CLASSES = [
+  "animate-ken-burns-1",
+  "animate-ken-burns-2",
+  "animate-ken-burns-3",
+  "animate-ken-burns-4",
+];
+
+const STAGE_CAMERA_SPECS = [
+  { focal: "35mm Cine", move: "Slow Push-In" },
+  { focal: "24mm Wide", move: "Pan-Right Framing" },
+  { focal: "50mm Prime", move: "Facade Reveal" },
+  { focal: "28mm Interior", move: "Pan-Left Ambient" },
+];
+
 export default function HeroSection() {
   const router = useRouter();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -93,24 +114,32 @@ export default function HeroSection() {
       id="hero-section"
       className="relative bg-ink pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-border overflow-hidden min-h-screen flex flex-col justify-between"
     >
-      {/* FULL-WIDTH & FULL-HEIGHT DYNAMIC BACKGROUND IMAGES IN FLIP POSITION (-scale-x-100) */}
+      {/* FULL-WIDTH & FULL-HEIGHT DYNAMIC BACKGROUND IMAGES WITH SMOOTH KEN BURNS MOTION */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         {HERO_VISUAL_SLIDES.map((slide, idx) => {
           const isActive = idx === activeSlide;
+          const bgMotionClass = KEN_BURNS_BG_CLASSES[idx % KEN_BURNS_BG_CLASSES.length];
           return (
             <div
               key={slide.id}
-              className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
-                }`}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
             >
-              <Image
-                src={slide.mainImage}
-                alt={slide.title}
-                fill
-                priority={idx === 0}
-                sizes="100vw"
-                className="object-cover object-center -scale-x-100"
-              />
+              <div
+                className={`w-full h-full ${
+                  isActive ? bgMotionClass : "-scale-x-100"
+                }`}
+              >
+                <Image
+                  src={slide.mainImage}
+                  alt={slide.title}
+                  fill
+                  priority={idx === 0}
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
           );
         })}
@@ -175,31 +204,38 @@ export default function HeroSection() {
           {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel */}
           <div className="lg:col-span-7">
             <div className="relative rounded-2xl overflow-hidden border border-white/25 bg-ink/75 shadow-2xl group backdrop-blur-md">
-              {/* Main Stage Image */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <Image
+              {/* Main Stage Image with Cinematic Ken Burns Camera Motion */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0D0F1B]">
+                <div
                   key={activeSlide}
-                  src={currentSlide.mainImage}
-                  alt={currentSlide.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover transition-all duration-700 scale-100 group-hover:scale-105"
-                />
+                  className={`w-full h-full relative ${
+                    KEN_BURNS_CARD_CLASSES[activeSlide % KEN_BURNS_CARD_CLASSES.length]
+                  }`}
+                >
+                  <Image
+                    src={currentSlide.mainImage}
+                    alt={currentSlide.title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover object-center"
+                  />
+                </div>
                 {/* Softened gradient overlay inside card */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
 
-                {/* Top Left & Right Stage Badges */}
+                {/* Top Left & Right Stage Badges with Live Camera Indicator */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
-                  {/* <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
+                  <span className="px-3 py-1.5 rounded-full bg-[#DA5F36] text-white text-xs font-bold tracking-wider uppercase shadow-md flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     {currentSlide.stageTag}
-                  </span> */}
-                  {/* <span className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-brand-light" />
-                    {currentSlide.location}
-                  </span> */}
-                  <span className="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-bold tracking-wider uppercase shadow">
-                    {currentSlide.stageTag}
+                  </span>
+
+                  {/* Cinematic Camera Orbit / Focal Pill */}
+                  <span className="px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono font-medium flex items-center gap-1.5 shadow">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="text-white/70">CAM:</span>
+                    <span className="text-white font-bold">{STAGE_CAMERA_SPECS[activeSlide]?.focal}</span>
                   </span>
                 </div>
 

@@ -135,3 +135,117 @@ body {
 .animate-fade-up {
   animation: fadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ================= CINEMATIC KEN BURNS CAMERA MOTIONS ================= */
+@keyframes kenBurnsStage1 {
+  0% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -2%);
+  }
+}
+
+@keyframes kenBurnsStage2 {
+  0% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scale(1.08) translate(1.5%, -1%);
+  }
+}
+
+@keyframes kenBurnsStage3 {
+  0% {
+    transform: scale(1.08) translate(1%, 0%);
+  }
+  100% {
+    transform: scale(1.01) translate(-1%, 1%);
+  }
+}
+
+@keyframes kenBurnsStage4 {
+  0% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scale(1.08) translate(-1.5%, -1.5%);
+  }
+}
+
+.animate-ken-burns-1 {
+  animation: kenBurnsStage1 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-2 {
+  animation: kenBurnsStage2 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-3 {
+  animation: kenBurnsStage3 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-4 {
+  animation: kenBurnsStage4 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Flipped Keyframes for Background Mirror View */
+@keyframes kenBurnsFlip1 {
+  0% {
+    transform: scaleX(-1) scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scaleX(-1) scale(1.08) translate(-1%, -2%);
+  }
+}
+
+@keyframes kenBurnsFlip2 {
+  0% {
+    transform: scaleX(-1) scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scaleX(-1) scale(1.08) translate(1.5%, -1%);
+  }
+}
+
+@keyframes kenBurnsFlip3 {
+  0% {
+    transform: scaleX(-1) scale(1.08) translate(1%, 0%);
+  }
+  100% {
+    transform: scaleX(-1) scale(1.01) translate(-1%, 1%);
+  }
+}
+
+@keyframes kenBurnsFlip4 {
+  0% {
+    transform: scaleX(-1) scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scaleX(-1) scale(1.08) translate(-1.5%, -1.5%);
+  }
+}
+
+.animate-ken-burns-flip-1 {
+  animation: kenBurnsFlip1 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-flip-2 {
+  animation: kenBurnsFlip2 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-flip-3 {
+  animation: kenBurnsFlip3 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.animate-ken-burns-flip-4 {
+  animation: kenBurnsFlip4 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Blueprint Scanning Beam & Technical HUD */
+@keyframes blueprintScanGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(218, 95, 54, 0.7), 0 0 25px rgba(218, 95, 54, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(218, 95, 54, 0.95), 0 0 45px rgba(218, 95, 54, 0.55);
+  }
+}
+
+.animate-scan-glow {
+  animation: blueprintScanGlow 2.5s ease-in-out infinite;
+}
