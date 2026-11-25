@@ -68,7 +68,6 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-neutral-300">
               <li><Link href="#exterior-designs" className="hover:text-white">Exterior Designs (60+)</Link></li>
               <li><Link href="#happy-clients" className="hover:text-white">Our Happy Clients</Link></li>
-              <li><Link href="#blueprint-reality" className="hover:text-white">Blueprint vs Reality</Link></li>
               <li><Link href="#projects" className="hover:text-white">Residential Homes</Link></li>
               <li><Link href="#projects" className="hover:text-white">Commercial Complexes</Link></li>
             </ul>

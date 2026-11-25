@@ -64,21 +64,6 @@ export interface JourneyStep {
   caption: string;
 }
 
-export interface BlueprintComparisonItem {
-  id: string;
-  category: string;
-  title: string;
-  location: string;
-  areaSqFt: string;
-  costEstimate: string;
-  duration: string;
-  beforeLabel: string;
-  afterLabel: string;
-  beforeImage: string;
-  afterImage: string;
-  highlights: string[];
-}
-
 export interface ConstructionPackage {
   id: string;
   name: string;
@@ -203,7 +188,6 @@ export const NAV_LINKS = [
   { label: "Exterior Designs", href: "/#exterior-designs" },
   { label: "Happy Clients", href: "/#happy-clients" },
   { label: "Projects", href: "/#projects" },
-  { label: "Blueprint vs Reality", href: "/#blueprint-reality" },
   { label: "Patna HQ", href: "/#office-locator" },
 ];
 
@@ -968,69 +952,6 @@ export const PROJECT_JOURNEY_STEPS: JourneyStep[] = [
     mainImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80",
     secondaryImage: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80",
     caption: "Move-in ready design and execution blueprints delivered on schedule.",
-  },
-];
-
-export const BLUEPRINT_COMPARISONS: BlueprintComparisonItem[] = [
-  {
-    id: "comp-residential",
-    category: "Residential Architecture",
-    title: "Modern G+2 Family Residence",
-    location: "Kankarbagh, Patna",
-    areaSqFt: "2,400 sq.ft",
-    costEstimate: "₹42.5 Lakhs (Estimated)",
-    duration: "9 Months",
-    beforeLabel: "2D CAD Blueprint & Structure",
-    afterLabel: "Completed 3D Elevation & Finish",
-    beforeImage:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=85",
-    afterImage:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=85",
-    highlights: [
-      "100% Vastu-compliant 4BHK + Parking layout",
-      "Zero deviation between 3D render and on-site elevation",
-      "Structural AutoCAD column-beam detailing by Livitech Design engineers",
-    ],
-  },
-  {
-    id: "comp-site-execution",
-    category: "Commercial Planning",
-    title: "Multi-Storey Showroom & Office Complex",
-    location: "Bailey Road, Patna",
-    areaSqFt: "8,500 sq.ft",
-    costEstimate: "₹1.45 Crore (Project DPR)",
-    duration: "14 Months",
-    beforeLabel: "Raw RCC Frame & Site Work",
-    afterLabel: "Finished Structural Glazing & Facade",
-    beforeImage:
-      "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1400&q=85",
-    afterImage:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85",
-    highlights: [
-      "Heavy commercial column-beam structural engineering",
-      "ACP cladding & toughened glass front elevation design",
-      "Bank sanction approved Detailed Project Report (DPR)",
-    ],
-  },
-  {
-    id: "comp-interior",
-    category: "Interior & Finishing",
-    title: "Luxury Living Room & Modular Woodwork",
-    location: "Danapur, Patna",
-    areaSqFt: "1,850 sq.ft",
-    costEstimate: "₹12.8 Lakhs (Interior DPR)",
-    duration: "45 Days",
-    beforeLabel: "Bare Plaster & Electrical Wire Stage",
-    afterLabel: "Turnkey Luxury Interior Handover",
-    beforeImage:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=85",
-    afterImage:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85",
-    highlights: [
-      "3D interior walkthrough approved before execution",
-      "Italian-finish tiles, false ceiling & warm profile lighting specs",
-      "BWP marine plywood modular detailing with 10-year warranty specs",
-    ],
   },
 ];
 
