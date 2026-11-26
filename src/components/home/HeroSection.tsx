@@ -75,11 +75,18 @@ const KEN_BURNS_CARD_CLASSES = [
   "animate-ken-burns-4",
 ];
 
-const STAGE_CAMERA_SPECS = [
-  { focal: "35mm Cine", move: "Slow Push-In" },
-  { focal: "24mm Wide", move: "Pan-Right Framing" },
-  { focal: "50mm Prime", move: "Facade Reveal" },
-  { focal: "28mm Interior", move: "Pan-Left Ambient" },
+const STAGE_NAMES = [
+  "Architecture & 3D",
+  "Structural Design",
+  "Commercial Planning",
+  "Turnkey Interior",
+];
+
+const STAGE_SHORT_CONTEXT = [
+  "Vastu floor plans and realistic 3D front views.",
+  "Earthquake-safe steel, concrete checks, and civil audits.",
+  "Approved building maps, smart layouts, and glass facades.",
+  "3D room walkthroughs, modular kitchens, and turnkey finishing.",
 ];
 
 export default function HeroSection() {
@@ -154,27 +161,27 @@ export default function HeroSection() {
         {/* TOP SPLIT: Left Copy + Right Interactive Visual Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-stretch">
           {/* LEFT COLUMN (5 Cols): Clean Top-Aligned Content & Bottom-Parallel Buttons */}
-          <div className="lg:col-span-5 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-3">
-            {/* 1. Dynamic Text Block (Fixed Height Container, only text fades in smoothly) */}
-            <div className="h-[185px] sm:h-[195px] lg:h-[215px] flex flex-col justify-start">
+          <div className="lg:col-span-5 flex flex-col justify-between gap-8 lg:gap-10 pt-1 sm:pt-2 lg:pt-3">
+            {/* 1. Dynamic Text Block (Auto-expanding min-height so text never overlaps buttons) */}
+            <div className="min-h-[200px] sm:min-h-[220px] lg:min-h-[260px] flex flex-col justify-start">
               <div key={activeSlide} className="animate-hero-fade space-y-3 sm:space-y-4">
-                {/* Main Heading (Exact 9 words: 4 words + 5 words, 2 lines) */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
+                {/* Main Heading */}
+                <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-md">
                   <span>{stageContent.headingLine1}</span>
                   <span className="text-[#8699C1] block mt-1">
                     {stageContent.headingLine2}
                   </span>
                 </h1>
 
-                {/* Description (Exact 17 words across all 4 stages) */}
+                {/* Description */}
                 <p className="text-base sm:text-lg text-white/95 leading-relaxed max-w-xl font-medium drop-shadow-sm">
                   {stageContent.description}
                 </p>
               </div>
             </div>
 
-            {/* 2. Action Buttons (Parallel to the bottom of the right-side card on desktop) */}
-            <div className="pt-6 lg:pt-0 mt-6 lg:mt-auto flex flex-wrap items-center gap-3.5 pb-1">
+            {/* 2. Action Buttons (Always spaced cleanly below heading & description) */}
+            <div className="mt-auto flex flex-wrap items-center gap-3.5 pb-1">
               <Link
                 href={stageContent.primaryCtaHref}
                 className="inline-flex items-center justify-center gap-2 bg-[#DA5F36] hover:bg-[#BD4922] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-booking hover:shadow-booking-hover transition-all text-sm sm:text-base cursor-pointer min-w-[260px] whitespace-nowrap"
@@ -201,8 +208,8 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel */}
-          <div className="lg:col-span-7">
+          {/* RIGHT COLUMN (7 Cols): Multi-Stage Visual Carousel (Desktop only) */}
+          <div className="hidden lg:block lg:col-span-7">
             <div className="relative rounded-2xl overflow-hidden border border-white/25 bg-ink/75 shadow-2xl group backdrop-blur-md">
               {/* Main Stage Image with Cinematic Ken Burns Camera Motion */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0D0F1B]">
@@ -222,55 +229,48 @@ export default function HeroSection() {
                   />
                 </div>
                 {/* Softened gradient overlay inside card */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
-                {/* Top Left & Right Stage Badges with Live Camera Indicator */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-20">
-                  <span className="px-3 py-1.5 rounded-full bg-[#DA5F36] text-white text-xs font-bold tracking-wider uppercase shadow-md flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                    {currentSlide.stageTag}
-                  </span>
-
-                  {/* Cinematic Camera Orbit / Focal Pill */}
-                  <span className="px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono font-medium flex items-center gap-1.5 shadow">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span className="text-white/70">CAM:</span>
-                    <span className="text-white font-bold">{STAGE_CAMERA_SPECS[activeSlide]?.focal}</span>
-                  </span>
-                </div>
-
-                {/* Floating Blueprint / Working Detail Picture-in-Picture Card */}
-                <div className="hidden sm:flex absolute bottom-24 right-4 bg-white/95 backdrop-blur-md p-2.5 rounded-xl border border-border shadow-lg items-center gap-3 max-w-xs z-20">
+                {/* Floating Dynamic Stage Picture-in-Picture Card */}
+                <button
+                  key={currentSlide.id}
+                  type="button"
+                  onClick={() =>
+                    setActiveSlide((prev) => (prev + 1) % HERO_VISUAL_SLIDES.length)
+                  }
+                  aria-label={`Stage 0${activeSlide + 1}: ${STAGE_NAMES[activeSlide]}. Click for next stage`}
+                  className="hidden sm:flex absolute bottom-24 right-4 bg-white/95 backdrop-blur-md p-2.5 rounded-xl border border-border shadow-lg items-center gap-3 max-w-xs z-20 text-left animate-hero-fade cursor-pointer hover:border-brand/50 transition-colors"
+                >
                   <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-border">
                     <Image
-                      src={currentSlide.blueprintThumb}
-                      alt="Stage technical preview"
+                      src={currentSlide.mainImage}
+                      alt={STAGE_NAMES[activeSlide]}
                       fill
                       sizes="64px"
                       className="object-cover"
                     />
                   </div>
-                  <div className="text-left">
+                  <div className="min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-brand block">
-                      Live Working Spec
+                      Stage 0{activeSlide + 1}
                     </span>
                     <p className="text-xs font-bold text-ink line-clamp-1">
-                      {currentSlide.metrics}
+                      {STAGE_NAMES[activeSlide]}
                     </p>
                     <p className="text-[11px] text-ink-subtle line-clamp-2 mt-0.5">
-                      {currentSlide.description}
+                      {STAGE_SHORT_CONTEXT[activeSlide]}
                     </p>
                   </div>
-                </div>
+                </button>
 
                 {/* Bottom Overlay Info & Prev/Next Controls */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 z-20">
-                  <div className="text-white max-w-lg">
+                  <div className="text-white max-w-md">
                     <h2 className="text-lg sm:text-xl font-bold leading-snug drop-shadow-sm">
                       {currentSlide.title}
                     </h2>
-                    <p className="text-xs sm:text-sm text-neutral-200 mt-1 line-clamp-2 sm:hidden drop-shadow-sm">
-                      {currentSlide.description}
+                    <p className="text-xs sm:text-sm text-white/85 mt-0.5 line-clamp-1 drop-shadow-sm">
+                      {STAGE_SHORT_CONTEXT[activeSlide]}
                     </p>
                   </div>
 
@@ -302,54 +302,6 @@ export default function HeroSection() {
                     </button>
                   </div>
                 </div>
-              </div>
-
-              {/* Bottom 4 Thumbnail Stage Switcher Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 bg-surface/95 backdrop-blur-md border-t border-border">
-                {HERO_VISUAL_SLIDES.map((slide, idx) => {
-                  const isActive = idx === activeSlide;
-                  const stageNames = [
-                    "Architecture & 3D",
-                    "Structural Design",
-                    "Commercial Planning",
-                    "Turnkey Interior",
-                  ];
-                  return (
-                    <button
-                      key={slide.id}
-                      type="button"
-                      onClick={() => setActiveSlide(idx)}
-                      className={`p-2.5 sm:p-3 text-left transition-all border-r last:border-r-0 border-border flex items-center gap-2.5 cursor-pointer ${isActive
-                        ? "bg-brand-light/80 border-b-2 border-b-brand"
-                        : "hover:bg-surface-muted"
-                        }`}
-                    >
-                      <div className="relative w-10 h-10 rounded-md overflow-hidden shrink-0 hidden sm:block border border-border">
-                        <Image
-                          src={slide.mainImage}
-                          alt={slide.title}
-                          fill
-                          sizes="40px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <span
-                          className={`text-[10px] font-bold tracking-wider uppercase block truncate ${isActive ? "text-brand" : "text-ink-subtle"
-                            }`}
-                        >
-                          Stage 0{idx + 1}
-                        </span>
-                        <span
-                          className={`text-xs font-semibold block truncate ${isActive ? "text-ink font-bold" : "text-ink-muted"
-                            }`}
-                        >
-                          {stageNames[idx]}
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
               </div>
             </div>
           </div>
